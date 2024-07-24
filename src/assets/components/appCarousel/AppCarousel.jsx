@@ -2,7 +2,7 @@ import { useEffect, useReducer, useState } from 'react';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import useFetch from '../../hooks/useFetch';
-import { Card } from 'semantic-ui-react';
+import { Card, Container } from 'semantic-ui-react';
 
 const categoriesActions = (state, action) => {
   switch (action.type) {
@@ -33,7 +33,7 @@ const AppCarousel = () => {
   //   useFetch(url, dispatchCategories);
 
   return (
-    <>
+    <Container bordered={false} className='pt2 mt5 b--transparent'>
       <Swiper
         modules={[Navigation, Pagination]}
         spaceBetween={0}
@@ -50,11 +50,12 @@ const AppCarousel = () => {
                   .toLowerCase()
                   .replaceAll(' ', '-')}-0.jpg`}
                 header={el.category}
+                className='b--transparent'
               />
             </SwiperSlide>
           ))}
       </Swiper>
-    </>
+    </Container>
   );
 };
 
