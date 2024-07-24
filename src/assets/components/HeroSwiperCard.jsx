@@ -12,7 +12,7 @@ const HeroSwiperCard = ({ linkNum }) => {
   return (
     <Container
       className={`${cardStyles} b--black-10 b--solid shadow-1 br2-l`}
-      bordered
+      bordered='true'
     >
       <Grid columns={2}>
         <GridRow className='items-center'>

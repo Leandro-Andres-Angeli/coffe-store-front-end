@@ -5,8 +5,4 @@ import 'semantic-ui-css/semantic.min.css';
 import 'tachyons/css/tachyons.min.css';
 import './index.css';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
