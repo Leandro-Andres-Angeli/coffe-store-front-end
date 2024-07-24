@@ -8,7 +8,7 @@ import {
 } from 'semantic-ui-react';
 import { cardStyles } from './swipercard.module.css';
 import AppButton from './shared/AppButton';
-import { Swiper, useSwiper } from 'swiper/react';
+import { useSwiper } from 'swiper/react';
 const HeroSwiperCard = ({ linkNum }) => {
   return (
     <Container
@@ -32,7 +32,7 @@ const HeroSwiperCard = ({ linkNum }) => {
               <h1>Delicious Coffee</h1>
               <Divider />
             </div>
-            <p>
+            <p className='mb4-m'>
               {' '}
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut

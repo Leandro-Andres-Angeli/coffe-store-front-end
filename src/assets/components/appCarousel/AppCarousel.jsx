@@ -1,8 +1,8 @@
 import { useEffect, useReducer, useState } from 'react';
 import { Navigation, Pagination } from 'swiper/modules';
-import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import useFetch from '../../hooks/useFetch';
-import { Card, Container } from 'semantic-ui-react';
+import { Card, Container, Grid } from 'semantic-ui-react';
 import AppButton from '../shared/AppButton';
 
 const categoriesReducer = (state = initialState, action) => {
@@ -60,6 +60,8 @@ const AppCarousel = () => {
             return (
               <SwiperSlide style={{ margin: 0 }} key={el.id}>
                 <Card
+                  fluid
+                  color='yellow'
                   image={`images/categories/${el.category
                     .toLowerCase()
                     .replaceAll(' ', '-')}-0.jpg`}
@@ -70,14 +72,21 @@ const AppCarousel = () => {
             );
           })}
       </Swiper>
-      <Container className=' flex btns-container justify-end gap-1 pa3 ph3'>
-        <AppButton swiper={swiper} iconName='angle left swiper-button-prev '>
-          {' '}
-        </AppButton>
-        <AppButton
-          swiper={swiper}
-          iconName='angle right swiper-button-next '
-        ></AppButton>
+      <Container className=' mt5 ml2 '>
+        <Grid className=' w-100 flex btns-container justify-end  pa3 pr2'>
+          <AppButton
+            swiper={swiper}
+            iconName='angle left'
+            className='swiper-button-prev'
+          >
+            {' '}
+          </AppButton>
+          <AppButton
+            swiper={swiper}
+            iconName='angle right'
+            className='swiper-button-next '
+          ></AppButton>
+        </Grid>
       </Container>
     </Container>
   );

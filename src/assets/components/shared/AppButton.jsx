@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import styles from './appBtn.module.css';
-import { useSwiper } from 'swiper/react';
+
 import { Button } from 'semantic-ui-react';
 import buttonDirection from '../../utils/buttonDirection';
 
