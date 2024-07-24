@@ -41,6 +41,7 @@ const AppCarousel = () => {
 
   return (
     <Container bordered={'false'} className='pt2 mt5 b--transparent'>
+      <h2>Featured Categories</h2>
       <Swiper
         modules={[Navigation, Pagination]}
         spaceBetween={0}

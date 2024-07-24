@@ -6,8 +6,6 @@ import { useSwipeable } from 'react-swipeable';
 const HeroSection = () => {
   return (
     <main className=' ph2 pv4'>
-      {' '}
-      <div>Swipe here</div>
       <HeroSectionCarousel>
         {[0, 1, 2, 3].map((el) => {
           return (
