@@ -2,7 +2,7 @@ import { SwiperSlide } from 'swiper/react';
 import HeroSectionCarousel from './HeroSectionCarousel';
 import HeroSwiperCard from './HeroSwiperCard';
 import cardStyles from '../../assets/components/swipercard.module.css';
-import { useSwipeable } from 'react-swipeable';
+
 const HeroSection = () => {
   return (
     <main className=' ph2 pv4'>

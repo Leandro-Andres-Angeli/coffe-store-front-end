@@ -1,0 +1,15 @@
+.svgContainer svg {
+  max-width: 10rem;
+  max-height: 10rem;
+}
+.contentHalfWidth {
+  flex: 1 50%;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.imageStylesContainer {
+  background-image: url('images/coffee-beans-background.jpg');
+  background-position: center;
+  background-size: cover;
+}

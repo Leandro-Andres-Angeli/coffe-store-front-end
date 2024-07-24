@@ -47,7 +47,6 @@ const useFetch = async (url, dispatcher) => {
 
   useEffect(() => {
     cachedFetchData(url, dispatcher);
-    console.log('render');
   }, [cachedFetchData, url, dispatcher]);
 };
 
