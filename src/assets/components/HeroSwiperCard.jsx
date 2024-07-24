@@ -8,6 +8,7 @@ import {
 } from 'semantic-ui-react';
 import { cardStyles } from './swipercard.module.css';
 import AppButton from './shared/AppButton';
+import { Swiper, useSwiper } from 'swiper/react';
 const HeroSwiperCard = ({ linkNum }) => {
   return (
     <Container
@@ -42,8 +43,11 @@ const HeroSwiperCard = ({ linkNum }) => {
               sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
             <div className=' flex btns-container justify-end gap-1 pb3 ph3'>
-              <AppButton iconName='angle left'></AppButton>
-              <AppButton iconName='angle right'></AppButton>
+              <AppButton iconName='angle left' swiper={useSwiper()}></AppButton>
+              <AppButton
+                iconName='angle right'
+                swiper={useSwiper()}
+              ></AppButton>
             </div>
           </GridColumn>
         </GridRow>

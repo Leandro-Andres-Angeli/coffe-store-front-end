@@ -1,8 +1,9 @@
 import { useEffect, useReducer, useState } from 'react';
 import { Navigation, Pagination } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import useFetch from '../../hooks/useFetch';
 import { Card, Container } from 'semantic-ui-react';
+import AppButton from '../shared/AppButton';
 
 const categoriesReducer = (state = initialState, action) => {
   console.log(action);
@@ -35,7 +36,7 @@ const AppCarousel = () => {
   useEffect(() => {
     // categoriesReducer({ type: 'init' });
   }, []);
-
+  const [swiper, setSwiper] = useState(null);
   // useFetch(url, dispatchCategories);
 
   return (
@@ -45,22 +46,39 @@ const AppCarousel = () => {
         spaceBetween={0}
         slidesPerView={3}
         loop={true}
-        navigation
         pagination={{ clickable: true }}
+        navigation={{
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        }}
+        onBeforeInit={(swiper) => {
+          setSwiper(swiper);
+        }}
       >
-        {/* {data?.success &&
-          data.result.map((el) => (
-            <SwiperSlide style={{ margin: 0 }} key={el.id}>
-              <Card
-                image={`images/categories/${el.category
-                  .toLowerCase()
-                  .replaceAll(' ', '-')}-0.jpg`}
-                header={el.category}
-                className='b--transparent'
-              />
-            </SwiperSlide>
-          ))} */}
+        {Boolean(categories?.result) &&
+          categories.result.map((el) => {
+            return (
+              <SwiperSlide style={{ margin: 0 }} key={el.id}>
+                <Card
+                  image={`images/categories/${el.category
+                    .toLowerCase()
+                    .replaceAll(' ', '-')}-0.jpg`}
+                  header={el.category}
+                  className='b--transparent w-100'
+                />
+              </SwiperSlide>
+            );
+          })}
       </Swiper>
+      <Container className=' flex btns-container justify-end gap-1 pa3 ph3'>
+        <AppButton swiper={swiper} iconName='angle left swiper-button-prev '>
+          {' '}
+        </AppButton>
+        <AppButton
+          swiper={swiper}
+          iconName='angle right swiper-button-next '
+        ></AppButton>
+      </Container>
     </Container>
   );
 };

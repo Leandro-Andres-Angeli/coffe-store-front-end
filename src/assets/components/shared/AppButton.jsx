@@ -4,12 +4,11 @@ import { useSwiper } from 'swiper/react';
 import { Button } from 'semantic-ui-react';
 import buttonDirection from '../../utils/buttonDirection';
 
-const AppButton = ({ iconName }) => {
+const AppButton = ({ iconName, swiper }) => {
   //   const [icon, setIcon] = useState(iconOptions.init);
 
   const [, direction] = iconName.split(' ');
 
-  const swiper = useSwiper();
   const btnRef = useRef();
 
   return (
