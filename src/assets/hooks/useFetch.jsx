@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 
 const initialState = {
   result: [],
@@ -8,7 +8,7 @@ const initialState = {
 };
 const useFetch = async (url, dispatcher) => {
   //   const [data, setData] = useState(initialState);
-  const fetchData = async (url, dispatcher) => {
+  const fetchData = async (url, dispatcherArg) => {
     try {
       const res = await fetch(url);
       const result = await res.json();
@@ -16,25 +16,39 @@ const useFetch = async (url, dispatcher) => {
       if (!res.ok) {
         return;
       }
-
-      dispatcher({ ...initialState, result, success: true });
+      console.log('ok');
+      dispatcherArg({
+        type: 'init',
+        payload: {
+          ...initialState,
+          result,
+          success: true,
+          done: true,
+          error: false,
+        },
+      });
     } catch (error) {
-      dispatcher((prev) => ({ ...prev, success: false, error: true }));
-    } finally {
-      dispatcher((prev) => ({ ...prev, done: true, loading: false }));
+      dispatcherArg({
+        type: 'error',
+        payload: {
+          ...initialState,
+          result: [],
+          done: true,
+          success: false,
+          error: true,
+        },
+      });
     }
   };
-  const cachedFetchData = useCallback(
-    (url) => {
-      fetchData(url, dispatcher);
-    },
-    [dispatcher]
-  );
+  const cachedFetchData = useCallback((url, dispatcher) => {
+    console.log(dispatcher);
+    fetchData(url, dispatcher);
+  }, []);
 
   useEffect(() => {
-    cachedFetchData(url);
+    cachedFetchData(url, dispatcher);
     console.log('render');
-  }, [cachedFetchData, url]);
+  }, [cachedFetchData, url, dispatcher]);
 };
 
 export default useFetch;

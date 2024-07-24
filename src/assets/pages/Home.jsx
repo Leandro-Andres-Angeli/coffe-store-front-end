@@ -4,9 +4,8 @@ import Categories from '../components/shared/Categories';
 const Home = () => {
   return (
     <>
-      <HeroSection></HeroSection>
+      {/* <HeroSection></HeroSection> */}
       <AppCarousel></AppCarousel>
-      {/* <Categories></Categories> */}
     </>
   );
 };

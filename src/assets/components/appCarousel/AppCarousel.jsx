@@ -4,14 +4,14 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import useFetch from '../../hooks/useFetch';
 import { Card, Container } from 'semantic-ui-react';
 
-const categoriesActions = (state, action) => {
+const categoriesReducer = (state = initialState, action) => {
+  console.log(action);
   switch (action.type) {
     case 'init':
       console.log('init');
       return action.payload;
 
     default:
-      console.log('def');
       return state;
   }
 };
@@ -24,16 +24,22 @@ const initialState = {
 };
 const AppCarousel = () => {
   const [categories, dispatchCategories] = useReducer(
-    initialState,
-    categoriesActions
+    categoriesReducer,
+    initialState
   );
   const url = 'http://localhost:8000/categories';
-  const [data, setData] = useState(initialState);
-  useFetch(url, setData);
-  //   useFetch(url, dispatchCategories);
+  // const [data, setData] = useState(initialState);
+  // useFetch(url, setData);
+  useFetch(url, dispatchCategories);
+
+  useEffect(() => {
+    // categoriesReducer({ type: 'init' });
+  }, []);
+
+  // useFetch(url, dispatchCategories);
 
   return (
-    <Container bordered={false} className='pt2 mt5 b--transparent'>
+    <Container bordered={'false'} className='pt2 mt5 b--transparent'>
       <Swiper
         modules={[Navigation, Pagination]}
         spaceBetween={0}
@@ -42,7 +48,7 @@ const AppCarousel = () => {
         navigation
         pagination={{ clickable: true }}
       >
-        {data?.success &&
+        {/* {data?.success &&
           data.result.map((el) => (
             <SwiperSlide style={{ margin: 0 }} key={el.id}>
               <Card
@@ -53,7 +59,7 @@ const AppCarousel = () => {
                 className='b--transparent'
               />
             </SwiperSlide>
-          ))}
+          ))} */}
       </Swiper>
     </Container>
   );
