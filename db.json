@@ -1,0 +1,371 @@
+{
+  "categories": [
+    {
+      "category": "Coffee",
+      "id": "bbacaaeeceeae"
+    },
+    {
+      "category": "Iced Coffee",
+      "id": "ececaccaaffe"
+    },
+    {
+      "category": "Cold Brew",
+      "id": "efcceeffabcbeeff"
+    },
+    {
+      "category": "Iced Tea",
+      "id": "cabccbbaeec"
+    },
+    {
+      "category": "Tea",
+      "id": "bfeaedfccfdf"
+    },
+    {
+      "category": "Hot Drinks",
+      "id": "dbacbfeceafbebccc"
+    },
+    {
+      "category": "Specialty Coffee",
+      "id": "aebeebf"
+    },
+    {
+      "category": "Frappe",
+      "id": "aeaafedef"
+    },
+    {
+      "category": "Specialty Drinks",
+      "id": "effbbcffeb"
+    }
+  ],
+  "products": [
+    {
+      "id": "COF001",
+      "name": "Espresso",
+      "description": "A single shot of intense, concentrated coffee.",
+      "category": "Coffee",
+      "price": 2.5
+    },
+    {
+      "id": "COF002",
+      "name": "Double Espresso",
+      "description": "Two shots of intense, concentrated coffee.",
+      "category": "Coffee",
+      "price": 3.5
+    },
+    {
+      "id": "COF003",
+      "name": "Macchiato",
+      "description": "Espresso with a dollop of frothy milk foam.",
+      "category": "Coffee",
+      "price": 3
+    },
+    {
+      "id": "COF004",
+      "name": "Cortado",
+      "description": "Equal parts espresso and steamed milk.",
+      "category": "Coffee",
+      "price": 3.75
+    },
+    {
+      "id": "COF005",
+      "name": "Cappuccino",
+      "description": "Espresso with steamed milk and a frothy milk foam top.",
+      "category": "Coffee",
+      "price": 4
+    },
+    {
+      "id": "COF006",
+      "name": "Latte",
+      "description": "Espresso with steamed milk and a light layer of frothy milk foam.",
+      "category": "Coffee",
+      "price": 4.25
+    },
+    {
+      "id": "COF007",
+      "name": "Flat White",
+      "description": "Espresso with velvety microfoam milk.",
+      "category": "Coffee",
+      "price": 4.5
+    },
+    {
+      "id": "COF008",
+      "name": "Mocha",
+      "description": "Espresso with steamed milk, chocolate syrup, and whipped cream.",
+      "category": "Coffee",
+      "price": 4.75
+    },
+    {
+      "id": "COF009",
+      "name": "Americano",
+      "description": "Espresso shots diluted with hot water.",
+      "category": "Coffee",
+      "price": 3.25
+    },
+    {
+      "id": "COF010",
+      "name": "Long Black",
+      "description": "Espresso with hot water, similar to an Americano but with a different preparation method.",
+      "category": "Coffee",
+      "price": 3.5
+    },
+    {
+      "id": "COF011",
+      "name": "Affogato",
+      "description": "Vanilla gelato or ice cream drowned in a shot of hot espresso.",
+      "category": "Coffee",
+      "price": 5.5
+    },
+    {
+      "id": "COF012",
+      "name": "Iced Americano",
+      "description": "Espresso shots poured over ice water.",
+      "category": "Iced Coffee",
+      "price": 3.75
+    },
+    {
+      "id": "COF013",
+      "name": "Iced Latte",
+      "description": "Espresso with cold milk served over ice.",
+      "category": "Iced Coffee",
+      "price": 4.5
+    },
+    {
+      "id": "COF014",
+      "name": "Iced Mocha",
+      "description": "Espresso with cold milk, chocolate syrup, and whipped cream served over ice.",
+      "category": "Iced Coffee",
+      "price": 5
+    },
+    {
+      "id": "COF015",
+      "name": "Cold Brew",
+      "description": "Coffee brewed cold over a long period, served over ice.",
+      "category": "Cold Brew",
+      "price": 4.25
+    },
+    {
+      "id": "COF016",
+      "name": "Nitro Cold Brew",
+      "description": "Cold brew coffee infused with nitrogen for a creamy texture, served on tap.",
+      "category": "Cold Brew",
+      "price": 4.75
+    },
+    {
+      "id": "COF017",
+      "name": "Iced Chai Latte",
+      "description": "Chai tea concentrate with cold milk served over ice.",
+      "category": "Iced Tea",
+      "price": 4.25
+    },
+    {
+      "id": "COF018",
+      "name": "Matcha Latte",
+      "description": "Matcha green tea powder with steamed milk.",
+      "category": "Tea",
+      "price": 4.5
+    },
+    {
+      "id": "COF019",
+      "name": "Chai Latte",
+      "description": "Chai tea concentrate with steamed milk.",
+      "category": "Tea",
+      "price": 4
+    },
+    {
+      "id": "COF020",
+      "name": "Hot Chocolate",
+      "description": "Rich chocolate syrup with steamed milk, topped with whipped cream.",
+      "category": "Hot Drinks",
+      "price": 4.25
+    },
+    {
+      "id": "COF021",
+      "name": "Tea (Various Flavors)",
+      "description": "A selection of fine teas available, including black, green, and herbal varieties.",
+      "category": "Tea",
+      "price": 3
+    },
+    {
+      "id": "COF022",
+      "name": "Espresso Con Panna",
+      "description": "Espresso topped with a dollop of whipped cream.",
+      "category": "Coffee",
+      "price": 3.25
+    },
+    {
+      "id": "COF023",
+      "name": "Espresso Macchiato",
+      "description": "A shot of espresso \"marked\" with a small amount of steamed milk foam.",
+      "category": "Coffee",
+      "price": 3
+    },
+    {
+      "id": "COF024",
+      "name": "Turkish Coffee",
+      "description": "Strong coffee brewed with cardamom, served with grounds in the cup.",
+      "category": "Coffee",
+      "price": 4.5
+    },
+    {
+      "id": "COF025",
+      "name": "Irish Coffee",
+      "description": "Coffee with a shot of Irish whiskey, topped with whipped cream.",
+      "category": "Specialty Coffee",
+      "price": 6
+    },
+    {
+      "id": "COF026",
+      "name": "Café au Lait",
+      "description": "French-style coffee with equal parts coffee and steamed milk.",
+      "category": "Coffee",
+      "price": 4
+    },
+    {
+      "id": "COF027",
+      "name": "Espresso Tonic",
+      "description": "Espresso shot poured over tonic water, served with ice and a lemon twist.",
+      "category": "Specialty Coffee",
+      "price": 4.75
+    },
+    {
+      "id": "COF028",
+      "name": "Viennese Coffee",
+      "description": "Espresso with whipped cream and a sprinkle of cinnamon or cocoa powder.",
+      "category": "Specialty Coffee",
+      "price": 5.25
+    },
+    {
+      "id": "COF029",
+      "name": "Decaf Coffee",
+      "description": "Regular coffee, but without the caffeine.",
+      "category": "Coffee",
+      "price": 3
+    },
+    {
+      "id": "COF030",
+      "name": "Caramel Macchiato",
+      "description": "Espresso with steamed milk, vanilla syrup, and caramel drizzle.",
+      "category": "Coffee",
+      "price": 4.5
+    },
+    {
+      "id": "COF031",
+      "name": "Honey Vanilla Latte",
+      "description": "Espresso with steamed milk, honey, and vanilla syrup.",
+      "category": "Coffee",
+      "price": 4.75
+    },
+    {
+      "id": "COF032",
+      "name": "Pumpkin Spice Latte",
+      "description": "Espresso with steamed milk, pumpkin spice syrup, topped with whipped cream and pumpkin spice.",
+      "category": "Coffee",
+      "price": 5
+    },
+    {
+      "id": "COF033",
+      "name": "Hazelnut Mocha",
+      "description": "Espresso with steamed milk, chocolate syrup, hazelnut syrup, topped with whipped cream.",
+      "category": "Coffee",
+      "price": 5.25
+    },
+    {
+      "id": "COF034",
+      "name": "White Chocolate Mocha",
+      "description": "Espresso with steamed milk, white chocolate syrup, topped with whipped cream.",
+      "category": "Coffee",
+      "price": 5.25
+    },
+    {
+      "id": "COF035",
+      "name": "Espresso Frappe",
+      "description": "Espresso blended with ice, milk, and a touch of sugar, topped with whipped cream.",
+      "category": "Frappe",
+      "price": 5.5
+    },
+    {
+      "id": "COF036",
+      "name": "Vanilla Frappe",
+      "description": "Vanilla flavored frappe with milk and ice, topped with whipped cream.",
+      "category": "Frappe",
+      "price": 5.5
+    },
+    {
+      "id": "COF037",
+      "name": "Chocolate Frappe",
+      "description": "Chocolate flavored frappe with milk and ice, topped with whipped cream.",
+      "category": "Frappe",
+      "price": 5.5
+    },
+    {
+      "id": "COF038",
+      "name": "Strawberry Frappe",
+      "description": "Strawberry flavored frappe with milk and ice, topped with whipped cream.",
+      "category": "Frappe",
+      "price": 5.5
+    },
+    {
+      "id": "COF039",
+      "name": "Caramel Frappe",
+      "description": "Caramel flavored frappe with milk and ice, topped with whipped cream.",
+      "category": "Frappe",
+      "price": 5.5
+    },
+    {
+      "id": "COF040",
+      "name": "Espresso Martini",
+      "description": "A cocktail made with espresso, vodka, coffee liqueur, and sugar syrup.",
+      "category": "Specialty Drinks",
+      "price": 7.5
+    },
+    {
+      "id": "COF041",
+      "name": "Irish Cream Latte",
+      "description": "Espresso with steamed milk and Irish cream syrup.",
+      "category": "Specialty Coffee",
+      "price": 5.5
+    },
+    {
+      "id": "COF042",
+      "name": "Dirty Chai Latte",
+      "description": "Chai tea with a shot of espresso and steamed milk.",
+      "category": "Tea",
+      "price": 4.75
+    },
+    {
+      "id": "COF043",
+      "name": "Lavender Latte",
+      "description": "Espresso with steamed milk and lavender syrup.",
+      "category": "Specialty Coffee",
+      "price": 5
+    },
+    {
+      "id": "COF044",
+      "name": "Rosemary Honey Latte",
+      "description": "Espresso with steamed milk, rosemary infused honey, and a hint of sea salt.",
+      "category": "Specialty Coffee",
+      "price": 5.25
+    },
+    {
+      "id": "COF045",
+      "name": "Iced Matcha Latte",
+      "description": "Matcha green tea powder with cold milk served over ice.",
+      "category": "Iced Tea",
+      "price": 4.75
+    },
+    {
+      "id": "COF046",
+      "name": "Chai Frappe",
+      "description": "Chai tea frappe with milk and ice, topped with whipped cream.",
+      "category": "Frappe",
+      "price": 5.75
+    },
+    {
+      "id": "COF047",
+      "name": "Turmeric Latte",
+      "description": "Golden milk made with turmeric, espresso, and steamed milk.",
+      "category": "Specialty Coffee",
+      "price": 5
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+.carouselBtn {
+  background-color: transparent;
+  border: none;
+  color: var(--mdb-body-color);
+}
+.carouselBtn {
+  background-color: transparent;
+}
+
+svg.ionicon.animatedBtn:hover {
+  stroke: red !important;
+}

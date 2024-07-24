@@ -1,0 +1,12 @@
+cardStyles {
+  width: 100%;
+
+  position: relative;
+  margin-left: 1rem;
+  padding: 1rem;
+}
+.cardStyles > .ui.card,
+.ui.cards > .card {
+  width: 100vw !important;
+  position: absolute;
+}
