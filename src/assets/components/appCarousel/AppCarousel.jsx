@@ -28,7 +28,7 @@ const AppCarousel = () => {
     categoriesReducer,
     initialState
   );
-  const url = 'http://localhost:8000/categories';
+  const url = 'http://localhost:3001/categories';
   // const [data, setData] = useState(initialState);
   // useFetch(url, setData);
   useFetch(url, dispatchCategories);

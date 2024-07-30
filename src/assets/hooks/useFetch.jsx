@@ -1,4 +1,5 @@
 import { useCallback, useEffect } from 'react';
+import Categories from './../components/shared/Categories';
 
 const initialState = {
   result: [],
@@ -12,7 +13,7 @@ const useFetch = async (url, dispatcher) => {
     try {
       const res = await fetch(url);
       const result = await res.json();
-
+      console.log(result);
       if (!res.ok) {
         return;
       }
@@ -21,7 +22,7 @@ const useFetch = async (url, dispatcher) => {
         type: 'init',
         payload: {
           ...initialState,
-          result,
+          result: result.categories,
           success: true,
           done: true,
           error: false,
