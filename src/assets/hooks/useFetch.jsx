@@ -1,5 +1,4 @@
 import { useCallback, useEffect } from 'react';
-import Categories from './../components/shared/Categories';
 
 const initialState = {
   result: [],

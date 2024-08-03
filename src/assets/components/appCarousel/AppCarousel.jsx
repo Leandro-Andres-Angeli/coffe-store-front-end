@@ -2,7 +2,7 @@ import { useEffect, useReducer, useState } from 'react';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import useFetch from '../../hooks/useFetch';
-import { Card, Container, Grid } from 'semantic-ui-react';
+import { Card, Container, Grid, Input } from 'semantic-ui-react';
 import AppButton from '../shared/AppButton';
 
 const categoriesReducer = (state = initialState, action) => {
@@ -28,20 +28,34 @@ const AppCarousel = () => {
     categoriesReducer,
     initialState
   );
-  const url = 'http://localhost:3001/categories';
+  const [url, setUrl] = useState('http://localhost:3001/categories');
+
   // const [data, setData] = useState(initialState);
   // useFetch(url, setData);
-  useFetch(url, dispatchCategories);
 
-  useEffect(() => {
-    // categoriesReducer({ type: 'init' });
-  }, []);
+  useFetch(url, dispatchCategories);
+  useEffect(() => {}, [url]);
   const [swiper, setSwiper] = useState(null);
   // useFetch(url, dispatchCategories);
-
+  const handleOnChange = (e) => {
+    const { value } = e.target;
+    if (value.length === 0) {
+      setUrl('http://localhost:3001/categories');
+    }
+    if (value.length >= 3) {
+      setUrl(`http://localhost:3001/categories/search?regex=${value}`);
+    }
+  };
   return (
     <Container bordered={'false'} className='pt2 mt5 b--transparent'>
       <h2>Featured Categories</h2>
+      <Container>
+        <Input
+          onChange={handleOnChange}
+          placeholder='search category'
+          className='pv4'
+        ></Input>
+      </Container>
       <Swiper
         modules={[Navigation, Pagination]}
         spaceBetween={0}
