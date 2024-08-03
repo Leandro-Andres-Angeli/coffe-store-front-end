@@ -17,10 +17,10 @@ const HeroSwiperCard = ({ linkNum }) => {
     >
       <Grid columns={2}>
         <GridRow className='items-center'>
-          <GridColumn>
+          <GridColumn className='pb3'>
             <Image
               src={`images/Caramel_Macchiato_${linkNum}.jpg`}
-              className='mt4 pl3'
+              className='mt4 pl3 '
               wrapped
             />
           </GridColumn>

@@ -8,6 +8,8 @@ import AppButton from '../shared/AppButton';
 const categoriesReducer = (state = initialState, action) => {
   console.log(action);
   switch (action.type) {
+    case 'loading':
+      return { ...state, loading: true };
     case 'init':
       console.log('init');
       return action.payload;
@@ -28,35 +30,42 @@ const AppCarousel = () => {
     categoriesReducer,
     initialState
   );
-  const [url, setUrl] = useState('http://localhost:3001/categories');
+  const [url, setUrl] = useState('http://localhost:3001/api/categories');
+  const [animateClasses] = useState('animate__animated animate__fadeIn');
 
   // const [data, setData] = useState(initialState);
   // useFetch(url, setData);
 
   useFetch(url, dispatchCategories);
-  useEffect(() => {}, [url]);
+  useEffect(() => {
+    console.log('render');
+  }, [url]);
   const [swiper, setSwiper] = useState(null);
   // useFetch(url, dispatchCategories);
   const handleOnChange = (e) => {
     const { value } = e.target;
     if (value.length === 0) {
-      setUrl('http://localhost:3001/categories');
+      setUrl('http://localhost:3001/api/categories/');
     }
     if (value.length >= 3) {
-      setUrl(`http://localhost:3001/categories/search?regex=${value}`);
+      setUrl(`http://localhost:3001/api/categories/search?regex=${value}`);
     }
   };
   return (
-    <Container bordered={'false'} className='pt2 mt5 b--transparent'>
+    <Container bordered={'false'} className=' pt2 mt5 b--transparent'>
       <h2>Featured Categories</h2>
+
       <Container>
+        {' '}
         <Input
           onChange={handleOnChange}
           placeholder='search category'
           className='pv4'
+          loading={categories.loading}
         ></Input>
       </Container>
       <Swiper
+        className=''
         modules={[Navigation, Pagination]}
         spaceBetween={0}
         slidesPerView={3}
@@ -70,6 +79,12 @@ const AppCarousel = () => {
           setSwiper(swiper);
         }}
       >
+        {Boolean(!categories?.result.length) && (
+          <Container className={`${animateClasses} pv5`}>
+            <p>No results</p>
+          </Container>
+        )}
+        {JSON.stringify(categories.loading)}
         {Boolean(categories?.result) &&
           categories.result.map((el) => {
             return (
@@ -81,27 +96,29 @@ const AppCarousel = () => {
                     .toLowerCase()
                     .replaceAll(' ', '-')}-0.jpg`}
                   header={el.category}
-                  className='b--transparent w-100'
+                  className={`b--transparent w-100 ${animateClasses}`}
                 />
               </SwiperSlide>
             );
           })}
       </Swiper>
       <Container className=' mt5 ml2 '>
-        <Grid className=' w-100 flex btns-container justify-end  pa3 pr2'>
-          <AppButton
-            swiper={swiper}
-            iconName='angle left'
-            className='swiper-button-prev'
-          >
-            {' '}
-          </AppButton>
-          <AppButton
-            swiper={swiper}
-            iconName='angle right'
-            className='swiper-button-next '
-          ></AppButton>
-        </Grid>
+        {categories.result.length > 3 && (
+          <Grid className=' w-100 flex btns-container justify-end  pa3 pr2'>
+            <AppButton
+              swiper={swiper}
+              iconName='angle left'
+              className='swiper-button-prev'
+            >
+              {' '}
+            </AppButton>
+            <AppButton
+              swiper={swiper}
+              iconName='angle right'
+              className='swiper-button-next '
+            ></AppButton>
+          </Grid>
+        )}
       </Container>
     </Container>
   );
