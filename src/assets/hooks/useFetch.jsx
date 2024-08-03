@@ -6,7 +6,7 @@ const initialState = {
   success: false,
   done: false,
 };
-const useFetch = async (url, dispatcher) => {
+const useFetch = async (url, dispatcher, type) => {
   //   const [data, setData] = useState(initialState);
 
   const fetchData = useCallback(
@@ -21,7 +21,7 @@ const useFetch = async (url, dispatcher) => {
         }
         console.log(result);
         dispatcherArg({
-          type: 'init',
+          type,
           payload: {
             ...initialState,
 
@@ -46,7 +46,7 @@ const useFetch = async (url, dispatcher) => {
         });
       }
     },
-    [dispatcher]
+    [dispatcher, type]
   );
   // const cachedFetchData = useMemo((url, dispatcher) => {
   //    fetchData(url, dispatcher);

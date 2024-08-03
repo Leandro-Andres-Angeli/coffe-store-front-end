@@ -10,8 +10,7 @@ const categoriesReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'loading':
       return { ...state, loading: true };
-    case 'init':
-      console.log('init');
+    case 'load':
       return action.payload;
 
     default:
@@ -33,15 +32,12 @@ const AppCarousel = () => {
   const [url, setUrl] = useState('http://localhost:3001/api/categories');
   const [animateClasses] = useState('animate__animated animate__fadeIn');
 
-  // const [data, setData] = useState(initialState);
-  // useFetch(url, setData);
-
-  useFetch(url, dispatchCategories);
+  useFetch(url, dispatchCategories, 'load');
   useEffect(() => {
     console.log('render');
   }, [url]);
   const [swiper, setSwiper] = useState(null);
-  // useFetch(url, dispatchCategories);
+
   const handleOnChange = (e) => {
     const { value } = e.target;
     if (value.length === 0) {
@@ -75,20 +71,24 @@ const AppCarousel = () => {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',
         }}
-        onBeforeInit={(swiper) => {
+        onAfterInit={(swiper) => {
           setSwiper(swiper);
         }}
       >
-        {Boolean(!categories?.result.length) && (
+        {Boolean(!categories?.result.length) && !categories?.loading && (
           <Container className={`${animateClasses} pv5`}>
             <p>No results</p>
           </Container>
         )}
-        {JSON.stringify(categories.loading)}
+
         {Boolean(categories?.result) &&
           categories.result.map((el) => {
             return (
-              <SwiperSlide style={{ margin: 0 }} key={el.id}>
+              <SwiperSlide
+                className='dim cursor-pointer'
+                style={{ margin: 0 }}
+                key={el.id}
+              >
                 <Card
                   fluid
                   color='yellow'
@@ -96,7 +96,7 @@ const AppCarousel = () => {
                     .toLowerCase()
                     .replaceAll(' ', '-')}-0.jpg`}
                   header={el.category}
-                  className={`b--transparent w-100 ${animateClasses}`}
+                  className={`b--transparent w-100  ${animateClasses}`}
                 />
               </SwiperSlide>
             );
