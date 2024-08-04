@@ -14,7 +14,10 @@ const AppButton = ({ iconName, swiper }) => {
   return (
     <Button
       ref={btnRef}
-      onClick={() => swiper[`slide${buttonDirection[direction]}`]()}
+      onClick={() => {
+        console.log(swiper);
+        swiper[`slide${buttonDirection[direction]}`]();
+      }}
       className={`fs-3 ${styles.carouselBtn} `}
       icon={iconName}
       color='brown'

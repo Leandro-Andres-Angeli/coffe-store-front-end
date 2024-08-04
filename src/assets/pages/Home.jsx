@@ -7,6 +7,7 @@ const Home = () => {
     <>
       <HeroSection></HeroSection>
       <AppCarousel></AppCarousel>
+
       <Institutional></Institutional>
     </>
   );

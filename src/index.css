@@ -6,3 +6,9 @@
 .cursor-pointer:hover {
   cursor: pointer;
 }
+.swiper-pagination-bullet-active {
+  background-color: #a5673f;
+}
+input:focus {
+  border-color: #a5673f;
+}

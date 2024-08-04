@@ -1,12 +1,14 @@
-import { useEffect, useReducer, useState } from 'react';
+import { useEffect, useReducer, useRef, useState } from 'react';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import useFetch from '../../hooks/useFetch';
 import { Card, Container, Grid, Input } from 'semantic-ui-react';
-import AppButton from '../shared/AppButton';
 
+import AppButton from '../shared/AppButton';
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
 const categoriesReducer = (state = initialState, action) => {
-  console.log(action);
   switch (action.type) {
     case 'loading':
       return { ...state, loading: true };
@@ -32,11 +34,12 @@ const AppCarousel = () => {
   const [url, setUrl] = useState('http://localhost:3001/api/categories');
   const [animateClasses] = useState('animate__animated animate__fadeIn');
 
+  const swiperRef = useRef(null);
+
   useFetch(url, dispatchCategories, 'load');
   useEffect(() => {
     console.log('render');
   }, [url]);
-  const [swiper, setSwiper] = useState(null);
 
   const handleOnChange = (e) => {
     const { value } = e.target;
@@ -62,17 +65,15 @@ const AppCarousel = () => {
       </Container>
       <Swiper
         className=''
-        modules={[Navigation, Pagination]}
-        spaceBetween={0}
+        modules={[Pagination]}
+        spaceBetween={10}
         slidesPerView={3}
-        loop={true}
+        slidesPerGroup={3}
+        draggable
         pagination={{ clickable: true }}
-        navigation={{
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        }}
-        onAfterInit={(swiper) => {
-          setSwiper(swiper);
+        navigation={{ clickable: true }}
+        onAfterInit={function () {
+          swiperRef.current = this;
         }}
       >
         {Boolean(!categories?.result.length) && !categories?.loading && (
@@ -102,24 +103,6 @@ const AppCarousel = () => {
             );
           })}
       </Swiper>
-      <Container className=' mt5 ml2 '>
-        {categories.result.length > 3 && (
-          <Grid className=' w-100 flex btns-container justify-end  pa3 pr2'>
-            <AppButton
-              swiper={swiper}
-              iconName='angle left'
-              className='swiper-button-prev'
-            >
-              {' '}
-            </AppButton>
-            <AppButton
-              swiper={swiper}
-              iconName='angle right'
-              className='swiper-button-next '
-            ></AppButton>
-          </Grid>
-        )}
-      </Container>
     </Container>
   );
 };
