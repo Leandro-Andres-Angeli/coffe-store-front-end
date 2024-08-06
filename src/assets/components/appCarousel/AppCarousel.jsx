@@ -1,13 +1,13 @@
-import { useEffect, useReducer, useRef, useState } from 'react';
-import { Navigation, Pagination } from 'swiper/modules';
+import { useEffect, useReducer, useState } from 'react';
+import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import useFetch from '../../hooks/useFetch';
-import { Card, Container, Grid, Input } from 'semantic-ui-react';
+import { Card, Container, Input } from 'semantic-ui-react';
 
-import AppButton from '../shared/AppButton';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { appCarouselStyles } from './appCarousel.module.css';
 const categoriesReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'loading':
@@ -34,12 +34,8 @@ const AppCarousel = () => {
   const [url, setUrl] = useState('http://localhost:3001/api/categories');
   const [animateClasses] = useState('animate__animated animate__fadeIn');
 
-  const swiperRef = useRef(null);
-
   useFetch(url, dispatchCategories, 'load');
-  useEffect(() => {
-    console.log('render');
-  }, [url]);
+  useEffect(() => {}, [url]);
 
   const handleOnChange = (e) => {
     const { value } = e.target;
@@ -64,17 +60,16 @@ const AppCarousel = () => {
         ></Input>
       </Container>
       <Swiper
-        className=''
+        className={appCarouselStyles}
         modules={[Pagination]}
         spaceBetween={10}
         slidesPerView={3}
         slidesPerGroup={3}
         draggable
-        pagination={{ clickable: true }}
-        navigation={{ clickable: true }}
-        onAfterInit={function () {
-          swiperRef.current = this;
+        style={{
+          '--swiper-pagination-bullet-size': '14px',
         }}
+        pagination={{ clickable: true }}
       >
         {Boolean(!categories?.result.length) && !categories?.loading && (
           <Container className={`${animateClasses} pv5`}>
