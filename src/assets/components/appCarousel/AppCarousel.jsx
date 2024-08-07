@@ -67,7 +67,9 @@ const AppCarousel = () => {
         slidesPerGroup={3}
         draggable
         style={{
-          '--swiper-pagination-bullet-size': '14px',
+          '--swiper-pagination-bullet-size': '10px',
+          '--swiper-pagination-bottom': '-25px',
+          overflow: 'visible',
         }}
         pagination={{ clickable: true }}
       >
