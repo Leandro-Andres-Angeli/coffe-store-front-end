@@ -8,6 +8,7 @@ import { Card, Container, Input } from 'semantic-ui-react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { appCarouselStyles } from './appCarousel.module.css';
+import { Link } from 'react-router-dom';
 const categoriesReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'loading':
@@ -87,15 +88,20 @@ const AppCarousel = () => {
                 style={{ margin: 0 }}
                 key={el.id}
               >
-                <Card
-                  fluid
-                  color='yellow'
-                  image={`images/categories/${el.category
-                    .toLowerCase()
-                    .replaceAll(' ', '-')}-0.jpg`}
-                  header={el.category}
-                  className={`b--transparent w-100  ${animateClasses}`}
-                />
+                <Link
+                  to={`./category/${el.category}`}
+                  state={{ categoryId: el.id }}
+                >
+                  <Card
+                    fluid
+                    color='yellow'
+                    image={`images/categories/${el.category
+                      .toLowerCase()
+                      .replaceAll(' ', '-')}-0.jpg`}
+                    header={el.category}
+                    className={`b--transparent w-100  ${animateClasses}`}
+                  />
+                </Link>
               </SwiperSlide>
             );
           })}

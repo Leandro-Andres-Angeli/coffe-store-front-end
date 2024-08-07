@@ -12,10 +12,10 @@ import { useSwiper } from 'swiper/react';
 const HeroSwiperCard = ({ linkNum }) => {
   return (
     <Container
-      className={`${cardStyles} b--black-10 b--solid shadow-1 br2-l`}
+      className={`${cardStyles} b--black-10 b--solid shadow-1 br2-l pa2 pa0-ns`}
       bordered='true'
     >
-      <Grid columns={2}>
+      <Grid columns={2} stackable>
         <GridRow className='items-center'>
           <GridColumn className='pb3'>
             <Image
@@ -28,8 +28,8 @@ const HeroSwiperCard = ({ linkNum }) => {
             style={{ display: 'flex', justifyContent: 'space-around' }}
             className='flex flex-column'
           >
-            <div>
-              <h1>Delicious Coffee</h1>
+            <div className='mr-auto '>
+              <h2>Delicious Coffee</h2>
               <Divider />
             </div>
             <p className='mb4-m'>
