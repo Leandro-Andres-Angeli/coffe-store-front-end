@@ -6,7 +6,7 @@ const initialState = {
   success: false,
   done: false,
 };
-const useFetch = async (url, dispatcher, type) => {
+const useFetch = async (url, dispatcher, type, collection = 'categories') => {
   //   const [data, setData] = useState(initialState);
 
   const fetchData = useCallback(
@@ -15,17 +15,17 @@ const useFetch = async (url, dispatcher, type) => {
       try {
         const res = await fetch(url);
         const result = await res.json();
-        console.log(result);
+
         if (!res.ok) {
           return;
         }
-        console.log(result);
+
         dispatcherArg({
           type,
           payload: {
             ...initialState,
 
-            result: result.categories,
+            result: result[collection],
             success: true,
             done: true,
             error: false,

@@ -9,24 +9,10 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { appCarouselStyles } from './appCarousel.module.css';
 import { Link } from 'react-router-dom';
-const categoriesReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'loading':
-      return { ...state, loading: true };
-    case 'load':
-      return action.payload;
+import categoriesReducer, {
+  initialState,
+} from '../../dispatchers/categoriesDispatcher/categoriesReducer';
 
-    default:
-      return state;
-  }
-};
-
-const initialState = {
-  result: [],
-  loading: false,
-  success: false,
-  done: false,
-};
 const AppCarousel = () => {
   const [categories, dispatchCategories] = useReducer(
     categoriesReducer,
@@ -89,7 +75,7 @@ const AppCarousel = () => {
                 key={el.id}
               >
                 <Link
-                  to={`./category/${el.category}`}
+                  to={`./category/${el.category}/0`}
                   state={{ categoryId: el.id }}
                 >
                   <Card

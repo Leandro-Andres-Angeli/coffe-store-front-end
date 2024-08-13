@@ -1,19 +1,34 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useReducer } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
+import PaginationButtonsContainer from '../components/paginationBtns/PaginationButtonsContainer';
+import useFetch from '../hooks/useFetch';
+import productsReducer, {
+  initialState,
+} from '../dispatchers/productsDispatcher/productsReducer';
 
 const Category = () => {
   const { state } = useLocation();
   const params = useParams();
-  const [categoriesProducts, setCategoriesProducts] = useState([]);
+
+  const [products, dispatchProducts] = useReducer(
+    productsReducer,
+    initialState
+  );
+  const [pagination, setPagination] = useState(Number(params.page));
   const { VITE_API_BASE_URL } = import.meta.env;
-  console.log(VITE_API_BASE_URL);
-  useEffect(() => {}, []);
+  useFetch(
+    `${VITE_API_BASE_URL}products/category?category=${params.category}&page=${pagination}`,
+    dispatchProducts,
+    'load',
+    'products'
+  );
+  useEffect(() => {}, [pagination]);
 
   return (
     <div>
       Category
-      {JSON.stringify(state)}
-      {JSON.stringify(params)}
+      {products && JSON.stringify(products)}
+      <PaginationButtonsContainer></PaginationButtonsContainer>
     </div>
   );
 };
