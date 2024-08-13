@@ -7,14 +7,16 @@ import productsReducer, {
 } from '../dispatchers/productsDispatcher/productsReducer';
 
 const Category = () => {
-  const { state } = useLocation();
+  const location = useLocation();
+  console.log(location);
+  const { state } = location;
   const params = useParams();
 
   const [products, dispatchProducts] = useReducer(
     productsReducer,
     initialState
   );
-  const [pagination, setPagination] = useState(Number(params.page));
+  const [pagination, setPagination] = useState(0);
   const { VITE_API_BASE_URL } = import.meta.env;
   useFetch(
     `${VITE_API_BASE_URL}products/category?category=${params.category}&page=${pagination}`,
@@ -28,7 +30,9 @@ const Category = () => {
     <div>
       Category
       {products && JSON.stringify(products)}
-      <PaginationButtonsContainer></PaginationButtonsContainer>
+      <PaginationButtonsContainer
+        {...{ setPagination }}
+      ></PaginationButtonsContainer>
     </div>
   );
 };

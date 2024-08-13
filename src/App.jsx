@@ -13,7 +13,7 @@ function App() {
         <Route element={<Home></Home>} path='/'></Route>
         <Route
           element={<Category></Category>}
-          path='category/:category/:page'
+          path='category/:category'
         ></Route>
       </Routes>
     </BrowserRouter>

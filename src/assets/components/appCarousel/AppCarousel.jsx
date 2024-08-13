@@ -75,7 +75,7 @@ const AppCarousel = () => {
                 key={el.id}
               >
                 <Link
-                  to={`./category/${el.category}/0`}
+                  to={`./category/${el.category}`}
                   state={{ categoryId: el.id }}
                 >
                   <Card
