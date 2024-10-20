@@ -60,7 +60,7 @@ const AppCarousel = () => {
         }}
         pagination={{ clickable: true }}
       >
-        {Boolean(!categories?.data.categories.length) &&
+        {Boolean(!categories?.data?.categories.length) &&
           !categories?.loading && (
             <Container className={`${animateClasses} pv5`}>
               <p>No results</p>
