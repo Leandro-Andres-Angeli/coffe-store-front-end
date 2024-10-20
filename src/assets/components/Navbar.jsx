@@ -6,7 +6,7 @@ const menuIcons = new Map([
   [true, 'close'],
   [false, 'bars'],
 ]);
-const Navbar = () => {
+const Navbar = ({ sidebarVisibility, setSidebarVisibility }) => {
   // const { headerNavbar } = navbarStyles;
   const [menuOpen, setMenuOpen] = useState(false);
   return (
@@ -28,8 +28,8 @@ const Navbar = () => {
       <span className='ml-auto'>
         <Button
           circular
-          icon={menuIcons.get(menuOpen).toString()}
-          onClick={() => setMenuOpen((prev) => !prev)}
+          icon={menuIcons.get(sidebarVisibility).toString()}
+          onClick={() => setSidebarVisibility((prev) => !prev)}
         ></Button>
       </span>
     </Menu>
