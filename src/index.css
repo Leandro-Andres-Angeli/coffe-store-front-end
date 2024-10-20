@@ -12,3 +12,8 @@
 input:focus {
   border-color: #a5673f;
 }
+a:link,
+a:visited {
+  color: inherit;
+  text-decoration: none;
+}

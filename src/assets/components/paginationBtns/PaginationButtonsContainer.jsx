@@ -1,14 +1,21 @@
 import { Button, Container } from 'semantic-ui-react';
 
-const PaginationButtonsContainer = ({ setPagination }) => {
+const PaginationButtonsContainer = ({ setPagination, prev, next }) => {
+  console.log(next);
+  console.log(prev);
+
   return (
     <Container>
-      <Button circular onClick={() => setPagination((prev) => prev - 1)}>
-        prev
-      </Button>
-      <Button circular onClick={() => setPagination((prev) => prev + 1)}>
-        next
-      </Button>
+      {prev && (
+        <Button circular onClick={() => setPagination((p) => p - 1)}>
+          prev
+        </Button>
+      )}
+      {next === true && (
+        <Button circular onClick={() => setPagination((p) => p + 1)}>
+          next
+        </Button>
+      )}
     </Container>
   );
 };

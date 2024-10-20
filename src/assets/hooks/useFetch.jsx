@@ -1,7 +1,6 @@
 import { useCallback, useEffect } from 'react';
 
 const initialState = {
-  result: [],
   loading: false,
   success: false,
   done: false,
@@ -37,7 +36,7 @@ const useFetch = async (url, dispatcher, type, collection = 'categories') => {
           type: 'error',
           payload: {
             ...initialState,
-            result: [],
+
             done: true,
             success: false,
             error: true,
@@ -48,23 +47,7 @@ const useFetch = async (url, dispatcher, type, collection = 'categories') => {
     },
     [dispatcher, type]
   );
-  // const cachedFetchData = useMemo((url, dispatcher) => {
-  //    fetchData(url, dispatcher);
-  // }, [fetchData]);
-  // const memoizedFetch = useMemo(
-  //   (url, dispatcher) => fetchData(url, dispatcher),
-  //   [fetchData]
-  // );
-  // const cachedFetchData = useCallback(
-  //   (url, dispatcher) => {
-  //     memoizedFetch(url, dispatcher);
-  //   },
-  //   [memoizedFetch]
-  // );
 
-  // useEffect(() => {
-  //   cachedFetchData(url, dispatcher);
-  // }, [cachedFetchData, url, dispatcher]);
   useEffect(() => {
     fetchData(url, dispatcher);
     console.log('render');
