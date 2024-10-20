@@ -1,19 +1,25 @@
-import { Button, Container } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 
 const PaginationButtonsContainer = ({ setPagination, prev, next }) => {
   return (
-    <Container>
+    <div className='flex justify-end'>
       {prev && (
-        <Button circular onClick={() => setPagination((p) => p - 1)}>
-          prev
-        </Button>
+        <Button
+          className='ui brown circular icon button'
+          icon='angle left'
+          circular
+          onClick={() => setPagination((p) => p - 1)}
+        ></Button>
       )}
       {next === true && (
-        <Button circular onClick={() => setPagination((p) => p + 1)}>
-          next
-        </Button>
+        <Button
+          icon='angle right'
+          className='ui brown circular icon button'
+          circular
+          onClick={() => setPagination((p) => p + 1)}
+        ></Button>
       )}
-    </Container>
+    </div>
   );
 };
 
