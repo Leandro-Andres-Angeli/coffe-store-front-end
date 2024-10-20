@@ -21,7 +21,7 @@ const Navbar = ({ sidebarVisibility, setSidebarVisibility }) => {
         <Input
           className='flex-auto mh6 '
           placeholder='search product'
-          icon={'search icon'}
+          icon={'search'}
           only='mobile'
         ></Input>
       </span>
