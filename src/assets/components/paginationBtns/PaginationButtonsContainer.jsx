@@ -1,9 +1,6 @@
 import { Button, Container } from 'semantic-ui-react';
 
 const PaginationButtonsContainer = ({ setPagination, prev, next }) => {
-  console.log(next);
-  console.log(prev);
-
   return (
     <Container>
       {prev && (

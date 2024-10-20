@@ -9,7 +9,7 @@ import PaginationButtonsContainer from '../components/paginationBtns/PaginationB
 
 const Category = () => {
   const location = useLocation();
-  console.log(location);
+
   /*  const { state } = location; */
   const params = useParams();
 
@@ -19,10 +19,8 @@ const Category = () => {
   );
   const [pagination, setPagination] = useState(0);
   const { VITE_API_BASE_URL } = import.meta.env;
-  const {
-    loading,
-    data: { prev, next },
-  } = products;
+  const { loading } = products;
+
   useFetch(
     `${VITE_API_BASE_URL}products/category?category=${params.category}&page=${pagination}`,
     dispatchProducts,
@@ -40,7 +38,9 @@ const Category = () => {
           Category
           {products && JSON.stringify(products)}
           <PaginationButtonsContainer
-            {...{ setPagination, prev, next }}
+            next={products?.data?.next}
+            prev={products?.data?.prev}
+            {...{ setPagination }}
           ></PaginationButtonsContainer>
         </>
       )}
