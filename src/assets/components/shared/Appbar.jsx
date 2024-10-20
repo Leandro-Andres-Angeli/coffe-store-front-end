@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import { Icon, Menu, MenuItem, Sidebar } from 'semantic-ui-react';
 
 const Appbar = ({ sidebarVisibility, setSidebarVisibility }) => {
@@ -12,15 +13,16 @@ const Appbar = ({ sidebarVisibility, setSidebarVisibility }) => {
       width='thin'
       onHide={() => setSidebarVisibility(false)}
     >
-      <MenuItem as='a'>
+      <MenuItem as={NavLink} to='/'>
         <Icon name='coffee' />
         Home
       </MenuItem>
       <MenuItem as='a'>
-        <Icon name='tags' />
-        Categories
+        <Icon name='search' />
+        Search
       </MenuItem>
-      <MenuItem as='a'>
+
+      <MenuItem as={NavLink} to='/signup'>
         <Icon name='user plus' />
         Create account
       </MenuItem>

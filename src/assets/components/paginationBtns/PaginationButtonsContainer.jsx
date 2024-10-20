@@ -2,7 +2,7 @@ import { Button } from 'semantic-ui-react';
 
 const PaginationButtonsContainer = ({ setPagination, prev, next }) => {
   return (
-    <div className='flex justify-end'>
+    <div className='absolute ' style={{ bottom: '20%', right: '10%' }}>
       {prev && (
         <Button
           className='ui brown circular icon button'

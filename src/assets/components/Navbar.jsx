@@ -1,6 +1,6 @@
 import { Button, Input, Menu, MenuHeader } from 'semantic-ui-react';
 import { headerNavbar } from './navbarstyles.module.css';
-import { useState } from 'react';
+
 import { Link } from 'react-router-dom';
 const menuIcons = new Map([
   [true, 'close'],
@@ -8,7 +8,7 @@ const menuIcons = new Map([
 ]);
 const Navbar = ({ sidebarVisibility, setSidebarVisibility }) => {
   // const { headerNavbar } = navbarStyles;
-  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <Menu className={`pa3  ${headerNavbar}`} as='nav'>
       <MenuHeader>
