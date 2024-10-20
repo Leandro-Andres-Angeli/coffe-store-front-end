@@ -25,7 +25,7 @@ const useFetch = async (url, dispatcher, type, collection = 'categories') => {
           payload: {
             ...initialState,
 
-            result: result[collection],
+            data: result,
             success: true,
             done: true,
             error: false,

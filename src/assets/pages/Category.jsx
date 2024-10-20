@@ -9,7 +9,7 @@ import productsReducer, {
 const Category = () => {
   const location = useLocation();
   console.log(location);
-  const { state } = location;
+  /*  const { state } = location; */
   const params = useParams();
 
   const [products, dispatchProducts] = useReducer(

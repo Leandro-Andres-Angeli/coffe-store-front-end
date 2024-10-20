@@ -9,6 +9,8 @@ const categoriesReducer = (state = initialState, action) => {
     case 'loading':
       return { ...state, loading: true };
     case 'load':
+      console.log(action.payload);
+
       return action.payload;
 
     default:

@@ -60,14 +60,15 @@ const AppCarousel = () => {
         }}
         pagination={{ clickable: true }}
       >
-        {Boolean(!categories?.result.length) && !categories?.loading && (
-          <Container className={`${animateClasses} pv5`}>
-            <p>No results</p>
-          </Container>
-        )}
+        {Boolean(!categories?.data.categories.length) &&
+          !categories?.loading && (
+            <Container className={`${animateClasses} pv5`}>
+              <p>No results</p>
+            </Container>
+          )}
 
-        {Boolean(categories?.result) &&
-          categories.result.map((el) => {
+        {Boolean(categories?.data) &&
+          categories.data.categories.map((el) => {
             return (
               <SwiperSlide
                 className='dim cursor-pointer'
