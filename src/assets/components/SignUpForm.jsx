@@ -12,10 +12,17 @@ const SignUpForm = () => {
     email: '',
   });
   const handleSubmit = (e) => {
-    console.log(e.target);
+    const { name, lastName, password, email } = e.target;
+    const userData = {
+      name: name.value.toLowerCase().trim(),
+      lastName: lastName.value.toLowerCase().trim(),
+      password: password.value.trim(),
+      email: email.value.trim(),
+    };
+    console.log('userData', userData);
   };
   const checkEmail = (e) => {
-    const checkValidEmail = /^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$/g.test(
+    const checkValidEmail = /^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/g.test(
       e.target.value
     );
     if (!checkValidEmail) {
@@ -68,7 +75,7 @@ const SignUpForm = () => {
   return (
     <Form
       error
-      className='pa3'
+      className='pl2 pa3 pr5-m pr7-l'
       onChange={(e) => {
         setIsDirty(true);
         const inputs = [...e.currentTarget.querySelectorAll('input')].map(
@@ -78,10 +85,8 @@ const SignUpForm = () => {
       }}
       onSubmit={handleSubmit}
     >
-      {JSON.stringify(checkErrors(errors))}
-      {JSON.stringify(areEmptyFields)}
       <h4>Create Account</h4>
-      {JSON.stringify(errors)}
+
       <FormField
         required
         width={16}

@@ -9,8 +9,10 @@ export const Institutional = () => {
         <Grid>
           <GridRow className='justify-center flex '>
             <GridColumn
-              width={6}
-              className={`pa6 flex  tc pv6  flex-column justify-around ${institutionalStyles.contentHalfWidth}`}
+              mobile={16}
+              tablet={8}
+              computer={8}
+              className={`pa6 flex  tc pv6  flex-column justify-around `}
             >
               <h5 className='f4'>Welcome to Coffee Shop</h5>
               <CoffeeIcon
@@ -18,8 +20,10 @@ export const Institutional = () => {
               ></CoffeeIcon>
             </GridColumn>
             <GridColumn
-              width={6}
-              className={`pa6 tc flex flex-column bg-black-90  justify-around ${institutionalStyles.contentHalfWidth}`}
+              mobile={16}
+              tablet={8}
+              computer={8}
+              className={`pa6 tc flex flex-column bg-black-90  justify-around `}
             >
               <h5 className='gold tc f4'>Only the best coffee.</h5>
               <p className='white tj f4 '>
@@ -34,17 +38,26 @@ export const Institutional = () => {
             </GridColumn>
 
             <GridColumn
-              width={6}
-              className={`pa5 tc flex flex-column  bg-gold   justify-center ${institutionalStyles.contentHalfWidth}`}
+              mobile={16}
+              tablet={8}
+              computer={8}
+              className={`pa5 tc flex flex-column  bg-gold   justify-center `}
             >
               <div>
                 <h5 className='pv6 tc black-90 f1'>Pure Grain Coffee</h5>
               </div>
             </GridColumn>
             <GridColumn
-              width={6}
-              style={{ padding: '0', maxHeight: '70vh', overflow: 'hidden' }}
-              className={`pa5 flex  ${institutionalStyles.imageStylesContainer}   tc  flex-column justify-around ${institutionalStyles.contentHalfWidth}`}
+              mobile={16}
+              tablet={8}
+              computer={8}
+              style={{
+                padding: '0',
+                maxHeight: '70vh',
+                height: '100%',
+                overflow: 'hidden',
+              }}
+              className={`pa5 flex  ${institutionalStyles.imageStylesContainer}   tc  flex-column justify-around `}
             ></GridColumn>
           </GridRow>
         </Grid>

@@ -1,7 +1,12 @@
-import { NavLink } from 'react-router-dom';
+import { useEffect } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 import { Icon, Menu, MenuItem, Sidebar } from 'semantic-ui-react';
 
 const Appbar = ({ sidebarVisibility, setSidebarVisibility }) => {
+  const location = useLocation();
+  useEffect(() => {
+    setSidebarVisibility(false);
+  }, [location, setSidebarVisibility]);
   return (
     <Sidebar
       as={Menu}
