@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Bounce, toast, ToastContainer } from 'react-toastify';
 import { Button, Form, FormField, Input, Message } from 'semantic-ui-react';
 
 const SignUpForm = () => {
@@ -13,18 +14,39 @@ const SignUpForm = () => {
     passwordLength: '',
     email: '',
   });
+
   const postUser = async (url, data) => {
-    const request = await fetch(url, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
-    const serverResponse = await request.json();
-    console.log(serverResponse);
-    return serverResponse;
+    let response;
+    try {
+      const request = await fetch(url, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+      const serverResponse = await request.json();
+      response = serverResponse;
+      return serverResponse;
+    } catch (error) {
+      response = error;
+      return error;
+    } finally {
+      const { ok } = response;
+      const toastStyle = !ok ? 'error' : 'success';
+      toast[`${toastStyle}`](response.message, {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+        transition: Bounce,
+      });
+    }
   };
   const handleSubmit = async (e) => {
     const { name, lastName, password, email } = e.target;
@@ -106,86 +128,91 @@ const SignUpForm = () => {
     }
   };
   return (
-    <Form
-      error
-      className='pl2 pa3 pr5-m pr7-l'
-      onChange={(e) => {
-        setIsDirty(true);
-        const inputs = [...e.currentTarget.querySelectorAll('input')].map(
-          (el) => el.value
-        );
-        setAreEmptyFields(inputs.some((val) => val === ''));
-      }}
-      onSubmit={handleSubmit}
-    >
-      <h4>Create Account</h4>
-      {JSON.stringify(errors)}
-      <FormField
-        required
-        width={16}
-        label='Name'
-        control={Input}
-        type='text'
-        name='name'
-        onChange={checkString}
-      ></FormField>
-      {errors.name && <Message error content={errors.name} />}
-      <FormField
-        width={16}
-        required
-        label='Last Name'
-        control={Input}
-        type='text'
-        name='lastName'
-        onChange={checkString}
-      ></FormField>
-      {errors.lastName && <Message error content={errors.lastName} />}
-      <FormField
-        width={16}
-        required
-        label='E-mail'
-        control={Input}
-        type='email'
-        name='email'
-        onChange={checkEmail}
-      ></FormField>
-      {errors.email && <Message error content={errors.email} />}
-      <FormField
-        width={16}
-        required
-        label='Password'
-        control={Input}
-        type='password'
-        name='password'
-        onChange={checkPasswordLength}
-      ></FormField>
-      {errors.passwordLength && (
-        <Message error content={errors.passwordLength} />
-      )}
-      <FormField
+    <>
+      <Form
+        error
+        className='pl2 pa3 pr5-m pr7-l'
         onChange={(e) => {
-          checkEqualPassword(e);
+          setIsDirty(true);
+          const inputs = [...e.currentTarget.querySelectorAll('input')].map(
+            (el) => el.value
+          );
+          setAreEmptyFields(inputs.some((val) => val === ''));
         }}
-        width={16}
-        required
-        label='Repeat Password'
-        control={Input}
-        type='password'
-        name='password2'
-      ></FormField>
-      {errors.password && <Message error content={errors.password} />}
-
-      <FormField
-        color={
-          (!checkErrors(errors) && isDirty) || areEmptyFields ? 'red' : 'blue'
-        }
-        disabled={areEmptyFields || (!checkErrors(errors) && isDirty)}
-        control={Button}
-        type='submit'
+        onSubmit={handleSubmit}
       >
-        Create Account
-      </FormField>
-    </Form>
+        <h4>Create Account</h4>
+        {JSON.stringify(errors)}
+        <FormField
+          required
+          width={16}
+          label='Name'
+          control={Input}
+          type='text'
+          name='name'
+          onChange={checkString}
+        ></FormField>
+        {errors.name && <Message error content={errors.name} />}
+        <FormField
+          width={16}
+          required
+          label='Last Name'
+          control={Input}
+          type='text'
+          name='lastName'
+          onChange={checkString}
+        ></FormField>
+        {errors.lastName && <Message error content={errors.lastName} />}
+        <FormField
+          width={16}
+          required
+          label='E-mail'
+          control={Input}
+          type='email'
+          name='email'
+          onChange={checkEmail}
+        ></FormField>
+        {errors.email && <Message error content={errors.email} />}
+        <FormField
+          width={16}
+          required
+          label='Password'
+          control={Input}
+          type='password'
+          name='password'
+          onChange={checkPasswordLength}
+        ></FormField>
+        {errors.passwordLength && (
+          <Message error content={errors.passwordLength} />
+        )}
+        <FormField
+          onChange={(e) => {
+            checkEqualPassword(e);
+          }}
+          width={16}
+          required
+          label='Repeat Password'
+          control={Input}
+          type='password'
+          name='password2'
+        ></FormField>
+        {errors.password && <Message error content={errors.password} />}
+
+        <FormField
+          color={
+            (!checkErrors(errors) && isDirty) || areEmptyFields ? 'red' : 'blue'
+          }
+          disabled={areEmptyFields || (!checkErrors(errors) && isDirty)}
+          control={Button}
+          type='submit'
+        >
+          Create Account
+        </FormField>
+      </Form>
+
+      {/* Same as */}
+      <ToastContainer />
+    </>
   );
 };
 
