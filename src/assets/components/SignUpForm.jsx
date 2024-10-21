@@ -2,16 +2,31 @@ import { useState } from 'react';
 import { Button, Form, FormField, Input, Message } from 'semantic-ui-react';
 
 const SignUpForm = () => {
+  const { VITE_API_BASE_URL } = import.meta.env;
+
   const [isDirty, setIsDirty] = useState(false);
   const [areEmptyFields, setAreEmptyFields] = useState(true);
   const [errors, setErrors] = useState({
     name: '',
     lastName: '',
     password: '',
-    password2: '',
+    passwordLength: '',
     email: '',
   });
-  const handleSubmit = (e) => {
+  const postUser = async (url, data) => {
+    const request = await fetch(url, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    const serverResponse = await request.json();
+    console.log(serverResponse);
+    return serverResponse;
+  };
+  const handleSubmit = async (e) => {
     const { name, lastName, password, email } = e.target;
     const userData = {
       name: name.value.toLowerCase().trim(),
@@ -19,7 +34,9 @@ const SignUpForm = () => {
       password: password.value.trim(),
       email: email.value.trim(),
     };
-    console.log('userData', userData);
+    /*  console.log('userData', userData); */
+    const postNewUser = await postUser(`${VITE_API_BASE_URL}auth`, userData);
+    console.log(postNewUser);
   };
   const checkEmail = (e) => {
     const checkValidEmail = /^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/g.test(
@@ -34,6 +51,22 @@ const SignUpForm = () => {
       setErrors((prev) => ({
         ...prev,
         [e.target.name]: '',
+      }));
+    }
+  };
+  const checkPasswordLength = (e) => {
+    const { value } = e.target;
+    if (value.length <= 7) {
+      setErrors((prev) => ({
+        ...prev,
+
+        passwordLength: `${e.target.name} must be at least 8 chars long`,
+      }));
+    } else {
+      setErrors((prev) => ({
+        ...prev,
+
+        passwordLength: '',
       }));
     }
   };
@@ -86,7 +119,7 @@ const SignUpForm = () => {
       onSubmit={handleSubmit}
     >
       <h4>Create Account</h4>
-
+      {JSON.stringify(errors)}
       <FormField
         required
         width={16}
@@ -124,10 +157,15 @@ const SignUpForm = () => {
         control={Input}
         type='password'
         name='password'
+        onChange={checkPasswordLength}
       ></FormField>
-
+      {errors.passwordLength && (
+        <Message error content={errors.passwordLength} />
+      )}
       <FormField
-        onChange={checkEqualPassword}
+        onChange={(e) => {
+          checkEqualPassword(e);
+        }}
         width={16}
         required
         label='Repeat Password'
