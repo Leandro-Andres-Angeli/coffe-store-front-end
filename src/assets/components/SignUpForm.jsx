@@ -2,24 +2,49 @@ import { useState } from 'react';
 import { Button, Form, FormField, Input, Message } from 'semantic-ui-react';
 
 const SignUpForm = () => {
-  const [errors, setErrors] = useState({});
+  const [isDirty, setIsDirty] = useState(false);
+  const [areEmptyFields, setAreEmptyFields] = useState(true);
+  const [errors, setErrors] = useState({
+    name: '',
+    lastName: '',
+    password: '',
+    password2: '',
+    email: '',
+  });
   const handleSubmit = (e) => {
     console.log(e.target);
   };
+  const checkEmail = (e) => {
+    const checkValidEmail = /^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$/g.test(
+      e.target.value
+    );
+    if (!checkValidEmail) {
+      setErrors((prev) => ({
+        ...prev,
+        [e.target.name]: `${e.target.name} must be a valid email`,
+      }));
+    } else {
+      setErrors((prev) => ({
+        ...prev,
+        [e.target.name]: '',
+      }));
+    }
+  };
+  const checkErrors = (obj) => Object.values(obj).every((val) => val === '');
   const checkString = (e) => {
     const checkNotString = /[^a-zA-Z]/g.test(e.target.value);
     if (checkNotString) {
-      console.log('in');
-
       setErrors((prev) => ({
         ...prev,
-        [e.target.name]: `Error ${e.target.name} must have only letters`,
+
+        [e.target.name]: `${e.target.name} must have only letters`,
       }));
     } else {
-      setErrors((prev) => {
-        delete prev[e.target.name];
-        return prev;
-      });
+      setErrors((prev) => ({
+        ...prev,
+
+        [e.target.name]: '',
+      }));
     }
   };
   const checkEqualPassword = (e) => {
@@ -31,17 +56,30 @@ const SignUpForm = () => {
     if (password !== password2) {
       setErrors((prev) => ({
         ...prev,
-        password: 'error passwords must be equal',
+
+        password: 'passwords must be equal',
       }));
     } else {
       setErrors((prev) => {
-        delete prev['password'];
-        return prev;
+        return { ...prev, password: '' };
       });
     }
   };
   return (
-    <Form error className='pa3' onSubmit={handleSubmit}>
+    <Form
+      error
+      className='pa3'
+      onChange={(e) => {
+        setIsDirty(true);
+        const inputs = [...e.currentTarget.querySelectorAll('input')].map(
+          (el) => el.value
+        );
+        setAreEmptyFields(inputs.some((val) => val === ''));
+      }}
+      onSubmit={handleSubmit}
+    >
+      {JSON.stringify(checkErrors(errors))}
+      {JSON.stringify(areEmptyFields)}
       <h4>Create Account</h4>
       {JSON.stringify(errors)}
       <FormField
@@ -53,7 +91,7 @@ const SignUpForm = () => {
         name='name'
         onChange={checkString}
       ></FormField>
-
+      {errors.name && <Message error content={errors.name} />}
       <FormField
         width={16}
         required
@@ -63,6 +101,7 @@ const SignUpForm = () => {
         name='lastName'
         onChange={checkString}
       ></FormField>
+      {errors.lastName && <Message error content={errors.lastName} />}
       <FormField
         width={16}
         required
@@ -70,7 +109,9 @@ const SignUpForm = () => {
         control={Input}
         type='email'
         name='email'
+        onChange={checkEmail}
       ></FormField>
+      {errors.email && <Message error content={errors.email} />}
       <FormField
         width={16}
         required
@@ -89,8 +130,16 @@ const SignUpForm = () => {
         type='password'
         name='password2'
       ></FormField>
-      <Message error content={errors.password} />
-      <FormField control={Button} type='submit'>
+      {errors.password && <Message error content={errors.password} />}
+
+      <FormField
+        color={
+          (!checkErrors(errors) && isDirty) || areEmptyFields ? 'red' : 'blue'
+        }
+        disabled={areEmptyFields || (!checkErrors(errors) && isDirty)}
+        control={Button}
+        type='submit'
+      >
         Create Account
       </FormField>
     </Form>
