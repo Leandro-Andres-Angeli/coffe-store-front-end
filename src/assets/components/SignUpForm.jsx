@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Bounce, toast, ToastContainer } from 'react-toastify';
 import { Button, Form, FormField, Input, Message } from 'semantic-ui-react';
 import { checkEmail, checkErrors } from '../../utils';
+import { customToast } from '../utils/customToast';
 
 const SignUpForm = () => {
   const { VITE_API_BASE_URL } = import.meta.env;
@@ -36,17 +37,7 @@ const SignUpForm = () => {
     } finally {
       const { ok } = response;
       const toastStyle = !ok ? 'error' : 'success';
-      toast[`${toastStyle}`](response.message, {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-        transition: Bounce,
-      });
+      customToast(toastStyle, response.message);
     }
   };
   const handleSubmit = async (e) => {
