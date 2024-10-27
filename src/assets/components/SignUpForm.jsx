@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Bounce, toast, ToastContainer } from 'react-toastify';
 import { Button, Form, FormField, Input, Message } from 'semantic-ui-react';
+import { checkEmail } from '../../utils';
 
 const SignUpForm = () => {
   const { VITE_API_BASE_URL } = import.meta.env;
@@ -59,7 +60,7 @@ const SignUpForm = () => {
 
     await postUser(`${VITE_API_BASE_URL}auth`, userData);
   };
-  const checkEmail = (e) => {
+  /* const checkEmail = (e) => {
     const checkValidEmail = /^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/g.test(
       e.target.value
     );
@@ -74,7 +75,7 @@ const SignUpForm = () => {
         [e.target.name]: '',
       }));
     }
-  };
+  }; */
   const checkPasswordLength = (e) => {
     const { value } = e.target;
     if (value.length <= 7) {
@@ -93,7 +94,7 @@ const SignUpForm = () => {
   };
   const checkErrors = (obj) => Object.values(obj).every((val) => val === '');
   const checkString = (e) => {
-    const checkNotString = /[^a-zA-Z]/g.test(e.target.value);
+    const checkNotString = /[^a-zA-Z ']/g.test(e.target.value);
     if (checkNotString) {
       setErrors((prev) => ({
         ...prev,
@@ -169,7 +170,7 @@ const SignUpForm = () => {
           control={Input}
           type='email'
           name='email'
-          onChange={checkEmail}
+          onChange={(e) => checkEmail(e, setErrors)}
         ></FormField>
         {errors.email && <Message error content={errors.email} />}
         <FormField
