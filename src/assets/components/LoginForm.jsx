@@ -2,12 +2,16 @@ import { useState } from 'react';
 import { Bounce, toast, ToastContainer } from 'react-toastify';
 import { Button, Form, FormField, Input, Message } from 'semantic-ui-react';
 import React from 'react';
+import { checkEmail, checkErrors } from '../../utils';
 
 const LoginForm = () => {
+  const [errors, setErrors] = useState({
+    email: '',
+  });
   return (
     <>
-      <h4>Login</h4>
       <Form error className='pl2 pa3 pr5-m pr7-l'>
+        <h4>Login</h4>
         <FormField
           required
           width={16}
@@ -15,8 +19,9 @@ const LoginForm = () => {
           control={Input}
           type='email'
           name='email'
+          onChange={(e) => checkEmail(e, setErrors)}
         ></FormField>
-
+        {errors.email && <Message error content={errors.email} />}
         <FormField
           width={16}
           required
@@ -26,7 +31,12 @@ const LoginForm = () => {
           name='password'
         ></FormField>
 
-        <FormField color={'blue'} control={Button} type='submit'>
+        <FormField
+          disabled={!checkErrors(errors)}
+          color={checkErrors(errors) ? 'blue' : 'red'}
+          control={Button}
+          type='submit'
+        >
           Login
         </FormField>
       </Form>

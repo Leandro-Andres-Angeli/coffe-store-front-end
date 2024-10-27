@@ -14,3 +14,5 @@ export const checkEmail = (e, setter) => {
     }));
   }
 };
+export const checkErrors = (obj) =>
+  Object.values(obj).every((val) => val === '');
