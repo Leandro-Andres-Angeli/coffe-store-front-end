@@ -50,6 +50,7 @@ const SignUpForm = () => {
     }
   };
   const handleSubmit = async (e) => {
+    e.preventDefault();
     const { name, lastName, password, email } = e.target;
     const userData = {
       name: name.value.toLowerCase().trim(),
@@ -58,7 +59,7 @@ const SignUpForm = () => {
       email: email.value.trim(),
     };
 
-    await postUser(`${VITE_API_BASE_URL}auth`, userData);
+    await postUser(`${VITE_API_BASE_URL}auth/newUser`, userData);
   };
 
   const checkPasswordLength = (e) => {
