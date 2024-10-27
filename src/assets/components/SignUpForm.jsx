@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Bounce, toast, ToastContainer } from 'react-toastify';
 import { Button, Form, FormField, Input, Message } from 'semantic-ui-react';
 
@@ -56,9 +56,8 @@ const SignUpForm = () => {
       password: password.value.trim(),
       email: email.value.trim(),
     };
-    /*  console.log('userData', userData); */
-    const postNewUser = await postUser(`${VITE_API_BASE_URL}auth`, userData);
-    console.log(postNewUser);
+
+    await postUser(`${VITE_API_BASE_URL}auth`, userData);
   };
   const checkEmail = (e) => {
     const checkValidEmail = /^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/g.test(
@@ -142,7 +141,7 @@ const SignUpForm = () => {
         onSubmit={handleSubmit}
       >
         <h4>Create Account</h4>
-        {JSON.stringify(errors)}
+
         <FormField
           required
           width={16}
@@ -210,7 +209,6 @@ const SignUpForm = () => {
         </FormField>
       </Form>
 
-      {/* Same as */}
       <ToastContainer />
     </>
   );

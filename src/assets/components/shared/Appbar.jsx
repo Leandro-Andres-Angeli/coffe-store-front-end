@@ -31,7 +31,7 @@ const Appbar = ({ sidebarVisibility, setSidebarVisibility }) => {
         <Icon name='user plus' />
         Create account
       </MenuItem>
-      <MenuItem as='a'>
+      <MenuItem as={NavLink} to='/login'>
         <Icon name='user circle' />
         Login
       </MenuItem>
