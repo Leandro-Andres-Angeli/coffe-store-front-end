@@ -14,7 +14,7 @@ const LoginForm = () => {
     email: '',
   });
   const {
-    user: [_, setUser],
+    user: [, setUser],
   } = useContext(AppContext);
   const [areEmptyFields, setAreEmptyFields] = useState(true);
   const handleSubmit = async (e) => {

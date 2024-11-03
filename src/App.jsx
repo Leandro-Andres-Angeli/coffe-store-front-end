@@ -13,6 +13,7 @@ import SignUp from './assets/pages/SignUp';
 import Login from './assets/pages/Login';
 import AppContext from './assets/context/AppContext';
 import { useEffect } from 'react';
+import { NotAuth } from './assets/components/auth/Auth';
 
 function App() {
   window.addEventListener('storage', function () {
@@ -36,8 +37,22 @@ function App() {
             element={<Category></Category>}
             path='category/:category'
           ></Route>
-          <Route element={<SignUp></SignUp>} path='signup'></Route>
-          <Route element={<Login></Login>} path='login'></Route>
+          <Route
+            element={
+              <NotAuth>
+                <SignUp></SignUp>
+              </NotAuth>
+            }
+            path='signup'
+          ></Route>
+          <Route
+            element={
+              <NotAuth>
+                <Login></Login>
+              </NotAuth>
+            }
+            path='login'
+          ></Route>
         </Routes>
 
         <Footer></Footer>

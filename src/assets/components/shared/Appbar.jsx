@@ -1,12 +1,13 @@
 import { useContext, useEffect } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { Icon, Menu, MenuItem, Sidebar } from 'semantic-ui-react';
 import AppContext from '../../context/AppContext';
 
 const Appbar = ({ sidebarVisibility, setSidebarVisibility }) => {
   const location = useLocation();
+
   const {
-    user: [_, setUser],
+    user: [user, setUser],
   } = useContext(AppContext);
   useEffect(() => {
     setSidebarVisibility(false);
@@ -30,25 +31,32 @@ const Appbar = ({ sidebarVisibility, setSidebarVisibility }) => {
         <Icon name='search' />
         Search
       </MenuItem>
+      {!user && (
+        <>
+          <MenuItem as={NavLink} to='/signup'>
+            <Icon name='user plus' />
+            Create account
+          </MenuItem>
+          <MenuItem as={NavLink} to='/login'>
+            <Icon name='user circle' />
+            Login
+          </MenuItem>
+        </>
+      )}
 
-      <MenuItem as={NavLink} to='/signup'>
-        <Icon name='user plus' />
-        Create account
-      </MenuItem>
-      <MenuItem as={NavLink} to='/login'>
-        <Icon name='user circle' />
-        Login
-      </MenuItem>
-      <MenuItem
-        role='button'
-        onClick={() => {
-          localStorage.clear();
-          setUser(null);
-        }}
-      >
-        <Icon name='log out' />
-        Log out
-      </MenuItem>
+      {user && (
+        <MenuItem
+          role='button'
+          onClick={() => {
+            localStorage.clear();
+            setUser(null);
+          }}
+        >
+          {' '}
+          <Icon name='log out' />
+          Log out
+        </MenuItem>
+      )}
     </Sidebar>
   );
 };
