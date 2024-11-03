@@ -186,8 +186,7 @@ const SignUpForm = () => {
           Create Account
         </FormField>
       </Form>
-
-      <ToastContainer />
+      <ToastContainer></ToastContainer>
     </>
   );
 };

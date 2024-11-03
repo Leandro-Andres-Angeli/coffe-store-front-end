@@ -11,6 +11,7 @@ import { useState } from 'react';
 import Footer from './assets/components/shared/Footer';
 import SignUp from './assets/pages/SignUp';
 import Login from './assets/pages/Login';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   const [sidebarVisibility, setSidebarVisibility] = useState(false);
@@ -30,6 +31,7 @@ function App() {
         <Route element={<SignUp></SignUp>} path='signup'></Route>
         <Route element={<Login></Login>} path='login'></Route>
       </Routes>
+
       <Footer></Footer>
     </BrowserRouter>
   );

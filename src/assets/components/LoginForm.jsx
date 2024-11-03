@@ -4,9 +4,11 @@ import { Button, Form, FormField, Input, Message } from 'semantic-ui-react';
 import React from 'react';
 import { checkEmail, checkErrors } from '../../utils';
 import { customToast } from '../utils/customToast';
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
   const { VITE_API_BASE_URL } = import.meta.env;
+  const navigate = useNavigate();
   const [errors, setErrors] = useState({
     email: '',
   });
@@ -33,17 +35,18 @@ const LoginForm = () => {
         },
         body: JSON.stringify(userData),
       });
-      const serverRespose = await request.json();
-      response = serverRespose;
-      if (!serverRespose.ok) {
-        return;
+      if (request.status === 404) {
+        throw Error('auth error');
       }
+      const serverRespose = await request.json();
+
+      response = serverRespose;
+      localStorage.setItem('token', serverRespose.token);
+      navigate('/');
     } catch (error) {
-      console.log(error);
-      response = error;
-    } finally {
-      const { ok } = response;
-      customToast(!ok ? 'error' : 'success', response.message);
+      console.log('in error');
+
+      customToast('error', error.message);
     }
   };
   return (
