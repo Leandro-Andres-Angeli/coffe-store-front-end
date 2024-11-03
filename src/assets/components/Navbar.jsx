@@ -2,13 +2,17 @@ import { Button, Input, Menu, MenuHeader } from 'semantic-ui-react';
 import { headerNavbar } from './navbarstyles.module.css';
 
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import AppContext from '../context/AppContext';
 const menuIcons = new Map([
   [true, 'close'],
   [false, 'bars'],
 ]);
 const Navbar = ({ sidebarVisibility, setSidebarVisibility }) => {
   // const { headerNavbar } = navbarStyles;
-
+  const {
+    user: [user],
+  } = useContext(AppContext);
   return (
     <Menu className={`pa3  ${headerNavbar}`} as='nav'>
       <MenuHeader>
@@ -17,6 +21,7 @@ const Navbar = ({ sidebarVisibility, setSidebarVisibility }) => {
           <h1 style={{ width: 'max-content' }}>☕ Coffee Shop</h1>
         </Link>
       </MenuHeader>
+      {JSON.stringify(user)}
       <span className='dn flex-l flex-auto'>
         <Input
           className='flex-auto mh6 '

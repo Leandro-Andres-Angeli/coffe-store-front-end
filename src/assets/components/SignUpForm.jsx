@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Bounce, toast, ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import { Button, Form, FormField, Input, Message } from 'semantic-ui-react';
 import { checkEmail, checkErrors } from '../../utils';
 import { customToast } from '../utils/customToast';

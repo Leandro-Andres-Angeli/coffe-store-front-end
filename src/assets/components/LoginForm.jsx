@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Bounce, toast, ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import { Button, Form, FormField, Input, Message } from 'semantic-ui-react';
-import React from 'react';
+
 import { checkEmail, checkErrors } from '../../utils';
 import { customToast } from '../utils/customToast';
 import { useNavigate } from 'react-router-dom';
@@ -25,7 +25,6 @@ const LoginForm = () => {
   };
 
   const loginUser = async (url, userData) => {
-    let response;
     try {
       const request = await fetch(url, {
         method: 'POST',
@@ -40,7 +39,6 @@ const LoginForm = () => {
       }
       const serverRespose = await request.json();
 
-      response = serverRespose;
       localStorage.setItem('token', serverRespose.token);
       navigate('/');
     } catch (error) {
