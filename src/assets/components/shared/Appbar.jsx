@@ -1,9 +1,13 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { Icon, Menu, MenuItem, Sidebar } from 'semantic-ui-react';
+import AppContext from '../../context/AppContext';
 
 const Appbar = ({ sidebarVisibility, setSidebarVisibility }) => {
   const location = useLocation();
+  const {
+    user: [_, setUser],
+  } = useContext(AppContext);
   useEffect(() => {
     setSidebarVisibility(false);
   }, [location, setSidebarVisibility]);
@@ -35,7 +39,13 @@ const Appbar = ({ sidebarVisibility, setSidebarVisibility }) => {
         <Icon name='user circle' />
         Login
       </MenuItem>
-      <MenuItem as='a'>
+      <MenuItem
+        role='button'
+        onClick={() => {
+          localStorage.clear();
+          setUser(null);
+        }}
+      >
         <Icon name='log out' />
         Log out
       </MenuItem>

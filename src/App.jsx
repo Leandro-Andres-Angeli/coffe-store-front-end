@@ -12,11 +12,17 @@ import Footer from './assets/components/shared/Footer';
 import SignUp from './assets/pages/SignUp';
 import Login from './assets/pages/Login';
 import AppContext from './assets/context/AppContext';
+import { useEffect } from 'react';
 
 function App() {
+  window.addEventListener('storage', function () {
+    console.log('storage');
+  });
   const [user, setUser] = useState({ user: null, token: null });
   const [sidebarVisibility, setSidebarVisibility] = useState(false);
-
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem('user')) || null);
+  }, []);
   return (
     <AppContext.Provider value={{ user: [user, setUser] }}>
       <BrowserRouter>

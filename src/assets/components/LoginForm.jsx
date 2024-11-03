@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 import { Button, Form, FormField, Input, Message } from 'semantic-ui-react';
 
 import { checkEmail, checkErrors } from '../../utils';
 import { customToast } from '../utils/customToast';
 import { useNavigate } from 'react-router-dom';
+import AppContext from '../context/AppContext';
 
 const LoginForm = () => {
   const { VITE_API_BASE_URL } = import.meta.env;
@@ -12,6 +13,9 @@ const LoginForm = () => {
   const [errors, setErrors] = useState({
     email: '',
   });
+  const {
+    user: [_, setUser],
+  } = useContext(AppContext);
   const [areEmptyFields, setAreEmptyFields] = useState(true);
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,6 +44,9 @@ const LoginForm = () => {
       const serverRespose = await request.json();
 
       localStorage.setItem('token', serverRespose.token);
+      localStorage.setItem('user', JSON.stringify(serverRespose.user));
+      setUser(JSON.parse(localStorage.getItem('user')));
+
       navigate('/');
     } catch (error) {
       console.log('in error');
