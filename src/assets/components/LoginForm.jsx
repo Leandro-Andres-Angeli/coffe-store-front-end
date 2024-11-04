@@ -38,7 +38,9 @@ const LoginForm = () => {
         },
         body: JSON.stringify(userData),
       });
-      if (request.status === 404) {
+      if (request.status !== 200) {
+        console.log('err');
+
         throw Error('auth error');
       }
       const serverRespose = await request.json();
@@ -46,11 +48,7 @@ const LoginForm = () => {
       localStorage.setItem('token', serverRespose.token);
       localStorage.setItem('user', JSON.stringify(serverRespose.user));
       setUser(JSON.parse(localStorage.getItem('user')));
-
-      navigate('/');
     } catch (error) {
-      console.log('in error');
-
       customToast('error', error.message);
     }
   };

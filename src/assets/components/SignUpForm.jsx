@@ -3,10 +3,11 @@ import { ToastContainer } from 'react-toastify';
 import { Button, Form, FormField, Input, Message } from 'semantic-ui-react';
 import { checkEmail, checkErrors } from '../../utils';
 import { customToast } from '../utils/customToast';
+import { useNavigate } from 'react-router-dom';
 
 const SignUpForm = () => {
   const { VITE_API_BASE_URL } = import.meta.env;
-
+  const navigate = useNavigate();
   const [isDirty, setIsDirty] = useState(false);
   const [areEmptyFields, setAreEmptyFields] = useState(true);
   const [errors, setErrors] = useState({
@@ -37,7 +38,13 @@ const SignUpForm = () => {
     } finally {
       const { ok } = response;
       const toastStyle = !ok ? 'error' : 'success';
-      customToast(toastStyle, response.message);
+      customToast(
+        toastStyle,
+        response.message,
+        setTimeout(() => {
+          navigate('/login');
+        }, 3000)
+      );
     }
   };
   const handleSubmit = async (e) => {
