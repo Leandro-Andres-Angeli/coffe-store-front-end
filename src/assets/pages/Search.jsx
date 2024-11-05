@@ -8,6 +8,7 @@ import PaginationButtonsContainer from '../components/paginationBtns/PaginationB
 
 const SearchResultList = function ({ value }) {
   const [pagination, setPagination] = useState(0);
+
   const [products, dispatchProducts] = useReducer(
     productsReducer,
     initialState
@@ -16,7 +17,7 @@ const SearchResultList = function ({ value }) {
 
   const { VITE_API_BASE_URL } = import.meta.env;
   useFetch(
-    `${VITE_API_BASE_URL}products/search?name=${value}`,
+    `${VITE_API_BASE_URL}products/search?name=${value}&page=${pagination}`,
     dispatchProducts,
     'load'
   );
