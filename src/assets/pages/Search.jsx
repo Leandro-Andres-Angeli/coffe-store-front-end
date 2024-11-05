@@ -1,41 +1,8 @@
-import { useEffect, useReducer, useState } from 'react';
-import { Input } from 'semantic-ui-react';
-import useFetch from '../hooks/useFetch';
-import { initialState } from '../dispatchers/categoriesDispatcher/categoriesReducer';
-import productsReducer from '../dispatchers/productsDispatcher/productsReducer';
-import ProductsPresentational from '../components/shared/ProductsPresentational';
-import PaginationButtonsContainer from '../components/paginationBtns/PaginationButtonsContainer';
+import { useState } from 'react';
+import { Container, Input } from 'semantic-ui-react';
 
-const SearchResultList = function ({ value }) {
-  const [pagination, setPagination] = useState(0);
+import SearchResultList from '../components/SearchResultList';
 
-  const [products, dispatchProducts] = useReducer(
-    productsReducer,
-    initialState
-  );
-  useEffect(() => {}, [pagination]);
-
-  const { VITE_API_BASE_URL } = import.meta.env;
-  useFetch(
-    `${VITE_API_BASE_URL}products/search?name=${value}&page=${pagination}`,
-    dispatchProducts,
-    'load'
-  );
-  const { loading } = products;
-  return (
-    <>
-      <ProductsPresentational
-        {...{ loading, products }}
-        title={'Search results'}
-      ></ProductsPresentational>
-      <PaginationButtonsContainer
-        next={products?.data?.next}
-        prev={products?.data?.prev}
-        {...{ setPagination }}
-      ></PaginationButtonsContainer>
-    </>
-  );
-};
 const Search = () => {
   const [search, setSearch] = useState({ search: false, value: null });
 
@@ -52,20 +19,28 @@ const Search = () => {
 
   return (
     <section>
-      <span className='dn flex-l flex-auto'>
+      <div className='dn flex-l flex-auto mt3 mb3'>
         <Input
           onChange={handleSearch}
           className='flex-auto mh6 '
           placeholder='search product'
           icon={'search'}
         ></Input>
-      </span>
-      <section>{!search.search && <p>Type to search</p>}</section>
-      <section>
-        {search.search && (
-          <SearchResultList value={search.value}></SearchResultList>
-        )}
-      </section>
+      </div>
+      {!search.search && (
+        <Container className='pt5 pb5 tc'>
+          <p className='mr2'>Type to search</p>
+        </Container>
+      )}
+
+      {search.search && (
+        <section className='pt3 pb3'>
+          <SearchResultList
+            className='pt6 pb3'
+            value={search.value}
+          ></SearchResultList>
+        </section>
+      )}
     </section>
   );
 };
