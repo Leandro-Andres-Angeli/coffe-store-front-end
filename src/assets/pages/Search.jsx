@@ -12,6 +12,7 @@ const SearchResultList = function ({ value }) {
     setResults,
     'load'
   );
+  const { loading } = results;
   return (
     <>
       <div>{JSON.stringify(results)}</div>
@@ -23,11 +24,13 @@ const Search = () => {
 
   const handleSearch = (e) => {
     const { value } = e.target;
-    if (value.length < 3) {
+
+    if (value.length <= 3) {
       setSearch({ search: false, value: null });
       return;
+    } else {
+      setSearch({ search: true, value });
     }
-    setSearch({ search: true, value });
   };
 
   return (

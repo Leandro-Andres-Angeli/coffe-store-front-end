@@ -6,17 +6,9 @@ import productsReducer, {
   initialState,
 } from '../dispatchers/productsDispatcher/productsReducer';
 import PaginationButtonsContainer from '../components/paginationBtns/PaginationButtonsContainer';
-import {
-  Container,
-  Dimmer,
-  Item,
-  ItemContent,
-  ItemExtra,
-  ItemGroup,
-  ItemHeader,
-  ItemMeta,
-  Loader,
-} from 'semantic-ui-react';
+import { Container, Dimmer, ItemGroup, Loader } from 'semantic-ui-react';
+import ProductItem from '../components/ProductItem';
+import ProductsPresentational from '../components/shared/ProductsPresentational';
 
 const Category = () => {
   const location = useLocation();
@@ -40,11 +32,26 @@ const Category = () => {
     'products'
   );
   useEffect(() => {}, [pagination]);
-  const [animateClasses] = useState('animate__animated animate__fadeIn');
+
   return (
     <div className='flex-grow-1'>
+      <ProductsPresentational
+        {...{ loading, products }}
+        title={`Category : ${category}`}
+      ></ProductsPresentational>
+      <Container>
+        <PaginationButtonsContainer
+          next={products?.data?.next}
+          prev={products?.data?.prev}
+          {...{ setPagination }}
+        ></PaginationButtonsContainer>
+      </Container>
+    </div>
+  );
+  /*  return (
+    <div className='flex-grow-1'>
       {loading ? (
-        /* loading */
+        //  loading 
 
         <Dimmer active inverted>
           <Loader inverted content='Loading' />
@@ -55,21 +62,9 @@ const Category = () => {
           <ItemGroup divided className={`${animateClasses}`}>
             {products.data &&
               products.data.products.map((el) => (
-                <Item key={el.id}>
-                  <ItemContent>
-                    <ItemHeader>{el.name}</ItemHeader>
-                    <ItemMeta>{el.description}</ItemMeta>
-
-                    <ItemExtra>
-                      {new Intl.NumberFormat('us', {
-                        style: 'currency',
-                        currency: 'USD',
-                      }).format(el.price)}
-                    </ItemExtra>
-                  </ItemContent>
-                </Item>
+                <ProductItem key={el.id} {...{ el }}></ProductItem>
               ))}
-            {/* {products.data && JSON.stringify(products)} */}
+          
           </ItemGroup>
           <PaginationButtonsContainer
             next={products?.data?.next}
@@ -79,7 +74,7 @@ const Category = () => {
         </Container>
       )}
     </div>
-  );
+  ); */
 };
 
 export default Category;
