@@ -6,15 +6,15 @@ import productsReducer, {
   initialState,
 } from '../dispatchers/productsDispatcher/productsReducer';
 import PaginationButtonsContainer from '../components/paginationBtns/PaginationButtonsContainer';
-import { Container, Dimmer, ItemGroup, Loader } from 'semantic-ui-react';
-import ProductItem from '../components/ProductItem';
+import { Container } from 'semantic-ui-react';
+
 import ProductsPresentational from '../components/shared/ProductsPresentational';
 
 const Category = () => {
   const location = useLocation();
-  console.log(location);
+
   const category = location.pathname.split('/').at(-1).replaceAll('%20', ' ');
-  /*  const { state } = location; */
+
   const params = useParams();
 
   const [products, dispatchProducts] = useReducer(

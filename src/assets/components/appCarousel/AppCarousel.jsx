@@ -25,11 +25,11 @@ const AppCarousel = () => {
   useEffect(() => {}, [url]);
 
   const handleOnChange = (e) => {
-    const { value } = e.target;
+    const value = e.target.value.trim();
     if (value.length === 0) {
       setUrl('http://localhost:3001/api/categories/');
     }
-    if (value.length >= 3) {
+    if (value.length >= 2) {
       setUrl(`http://localhost:3001/api/categories/search?regex=${value}`);
     }
   };
