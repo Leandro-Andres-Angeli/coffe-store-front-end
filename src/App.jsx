@@ -14,6 +14,7 @@ import Login from './assets/pages/Login';
 import AppContext from './assets/context/AppContext';
 import { useEffect } from 'react';
 import { NotAuth } from './assets/components/auth/Auth';
+import Search from './assets/pages/Search';
 
 function App() {
   window.addEventListener('storage', function () {
@@ -53,6 +54,7 @@ function App() {
             }
             path='login'
           ></Route>
+          <Route element={<Search></Search>} path='search'></Route>
         </Routes>
 
         <Footer></Footer>

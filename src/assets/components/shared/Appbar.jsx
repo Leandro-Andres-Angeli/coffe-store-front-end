@@ -27,7 +27,7 @@ const Appbar = ({ sidebarVisibility, setSidebarVisibility }) => {
         <Icon name='coffee' />
         Home
       </MenuItem>
-      <MenuItem as='a'>
+      <MenuItem as={NavLink} to='/search'>
         <Icon name='search' />
         Search
       </MenuItem>

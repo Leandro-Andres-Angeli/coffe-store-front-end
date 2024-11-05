@@ -22,14 +22,7 @@ const Navbar = ({ sidebarVisibility, setSidebarVisibility }) => {
         </Link>
       </MenuHeader>
       {JSON.stringify(user)}
-      <span className='dn flex-l flex-auto'>
-        <Input
-          className='flex-auto mh6 '
-          placeholder='search product'
-          icon={'search'}
-          only='mobile'
-        ></Input>
-      </span>
+
       <span className='ml-auto'>
         <Button
           circular
