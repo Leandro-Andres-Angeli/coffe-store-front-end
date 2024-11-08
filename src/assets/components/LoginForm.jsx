@@ -22,7 +22,7 @@ const LoginForm = () => {
     email: '',
   });
   const {
-    user: [, setUser],
+    user: [, userDispatcher],
   } = useContext(AppContext);
   const [areEmptyFields, setAreEmptyFields] = useState(true);
   const handleSubmit = async (e) => {
@@ -55,7 +55,10 @@ const LoginForm = () => {
 
       localStorage.setItem('token', serverRespose.token);
       localStorage.setItem('user', JSON.stringify(serverRespose.user));
-      setUser(JSON.parse(localStorage.getItem('user')));
+      userDispatcher({
+        type: 'login',
+        payload: JSON.parse(localStorage.getItem('user')),
+      });
     } catch (error) {
       customToast('error', error.message);
     }

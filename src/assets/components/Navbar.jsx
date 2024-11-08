@@ -2,17 +2,21 @@ import { Button, Container, Menu, MenuHeader } from 'semantic-ui-react';
 import { headerNavbar } from './navbarstyles.module.css';
 
 import { Link } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import AppContext from '../context/AppContext';
 const menuIcons = new Map([
   [true, 'close'],
   [false, 'bars'],
 ]);
+
 const Navbar = ({ sidebarVisibility, setSidebarVisibility }) => {
   // const { headerNavbar } = navbarStyles;
   const {
     user: [user],
   } = useContext(AppContext);
+  useEffect(() => {
+    console.log('update');
+  }, [user]);
   return (
     <Container as='nav' fluid>
       <Menu className={` ${headerNavbar} pa3`} as='header'>

@@ -4,23 +4,26 @@ import AppContext from '../context/AppContext';
 
 const FavoriteButton = ({ item }) => {
   const {
-    user: [user],
+    user: [user, userDispatcher],
   } = useContext(AppContext);
   const handleFavorites = async () => {
     try {
-      const fetchToDb = await fetch('http://localhost:3001/api/favorites/add', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(item),
-      });
+      const fetchToDb = await fetch(
+        `http://localhost:3001/api/favorites/add?userId=${user.id}`,
+        {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(item),
+        }
+      );
       if (fetchToDb.status !== 200) {
         throw Error('error updating user favorites');
       }
       const res = await fetchToDb.json();
-      console.log(res);
+      userDispatcher({ type: 'addToFavorites', payload: res.product });
     } catch (error) {
       console.log(error.message);
     }

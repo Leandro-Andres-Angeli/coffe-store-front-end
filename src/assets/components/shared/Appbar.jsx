@@ -7,7 +7,7 @@ const Appbar = ({ sidebarVisibility, setSidebarVisibility }) => {
   const location = useLocation();
 
   const {
-    user: [user, setUser],
+    user: [user, userDispatcher],
   } = useContext(AppContext);
   useEffect(() => {
     setSidebarVisibility(false);
@@ -49,7 +49,7 @@ const Appbar = ({ sidebarVisibility, setSidebarVisibility }) => {
           role='button'
           onClick={() => {
             localStorage.clear();
-            setUser(null);
+            userDispatcher({ type: 'logout' });
           }}
         >
           {' '}
