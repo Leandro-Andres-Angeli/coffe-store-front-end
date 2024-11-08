@@ -4,6 +4,7 @@ import { headerNavbar } from './navbarstyles.module.css';
 import { Link } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
 import AppContext from '../context/AppContext';
+import { shoppingCart } from './shoppingCart.module.css';
 const menuIcons = new Map([
   [true, 'close'],
   [false, 'bars'],
@@ -27,8 +28,12 @@ const Navbar = ({ sidebarVisibility, setSidebarVisibility }) => {
           </Link>
         </MenuHeader>
         {JSON.stringify(user)}
-        <div className='f3 mt2 black-60'>
-          <Icon name='shopping cart ' className='ml-auto'></Icon>
+        <div
+          className={`f3 ml-auto mt2 mr3 black-60 ${shoppingCart}`}
+          data-cart={user.favorites.length}
+        >
+          <Icon name='shopping cart ' className='ml-auto '></Icon>
+          {user.favorites.length}
         </div>
         <span className=''>
           <Button

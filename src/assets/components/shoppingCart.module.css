@@ -1,0 +1,14 @@
+.shoppingCart {
+  position: relative;
+}
+.shoppingCart::before {
+  position: absolute;
+  top: -20px;
+  right: -10px;
+  padding: 5px 10px;
+  border-radius: 100%;
+  font-size: 15px;
+  content: attr(data-cart);
+  background-color: rgb(255, 213, 2);
+  color: rgb(255, 255, 255);
+}
