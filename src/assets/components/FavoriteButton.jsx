@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Button } from 'semantic-ui-react';
 import AppContext from '../context/AppContext';
 
@@ -6,7 +6,16 @@ const FavoriteButton = ({ item }) => {
   const {
     user: [user, userDispatcher],
   } = useContext(AppContext);
-  const itemIsInFavorites = user.favorites.some((el) => el.id === item.id);
+
+  const [clickAction, setClickAction] = useState(null);
+  useEffect(() => {
+    console.log('render');
+
+    setClickAction(
+      user.favorites.some((el) => el.id === item.id) ? 'remove' : 'add'
+    );
+  }, [item.id, user.favorites]);
+
   const handleFavorites = async () => {
     try {
       const fetchToDb = await fetch(
@@ -31,10 +40,10 @@ const FavoriteButton = ({ item }) => {
   };
   return (
     <div onClick={handleFavorites}>
-      {JSON.stringify}
+      {clickAction}
       <Button
         circular
-        color={`${itemIsInFavorites && 'yellow'} `}
+        color={`${clickAction === 'remove' && 'yellow'} `}
         icon='star'
       ></Button>
     </div>
