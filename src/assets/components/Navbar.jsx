@@ -1,4 +1,4 @@
-import { Button, Container, Input, Menu, MenuHeader } from 'semantic-ui-react';
+import { Button, Container, Menu, MenuHeader } from 'semantic-ui-react';
 import { headerNavbar } from './navbarstyles.module.css';
 
 import { Link } from 'react-router-dom';

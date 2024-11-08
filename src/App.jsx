@@ -6,7 +6,7 @@ import Navbar from './assets/components/Navbar';
 import Home from './assets/pages/Home';
 import Category from './assets/pages/Category';
 import Appbar from './assets/components/shared/Appbar';
-import { useState } from 'react';
+import { useReducer, useState } from 'react';
 
 import Footer from './assets/components/shared/Footer';
 import SignUp from './assets/pages/SignUp';
@@ -15,18 +15,22 @@ import AppContext from './assets/context/AppContext';
 import { useEffect } from 'react';
 import { NotAuth } from './assets/components/auth/Auth';
 import Search from './assets/pages/Search';
+import {
+  initialState,
+  userReducer,
+} from './assets/reducers/usersReducer/usersReducer';
 
 function App() {
-  window.addEventListener('storage', function () {
-    console.log('storage');
-  });
-  const [user, setUser] = useState({ user: null, token: null });
+  const [user, userDispatcher] = useReducer(userReducer, initialState);
   const [sidebarVisibility, setSidebarVisibility] = useState(false);
   useEffect(() => {
-    setUser(JSON.parse(localStorage.getItem('user')) || null);
+    userDispatcher({
+      type: 'login',
+      payload: JSON.parse(localStorage.getItem('user')) || initialState,
+    });
   }, []);
   return (
-    <AppContext.Provider value={{ user: [user, setUser] }}>
+    <AppContext.Provider value={{ user: [user, userDispatcher] }}>
       <BrowserRouter>
         <Navbar {...{ sidebarVisibility, setSidebarVisibility }}></Navbar>
 

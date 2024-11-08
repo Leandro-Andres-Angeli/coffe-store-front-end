@@ -1,15 +1,23 @@
 import { useContext, useState } from 'react';
 import { ToastContainer } from 'react-toastify';
-import { Button, Form, FormField, Input, Message } from 'semantic-ui-react';
+import {
+  Button,
+  Container,
+  Form,
+  FormField,
+  Input,
+  Message,
+} from 'semantic-ui-react';
 
 import { checkEmail, checkErrors } from '../../utils';
 import { customToast } from '../utils/customToast';
-import { useNavigate } from 'react-router-dom';
+
 import AppContext from '../context/AppContext';
+import LoginGoogle from './LoginGoogle';
 
 const LoginForm = () => {
   const { VITE_API_BASE_URL } = import.meta.env;
-  const navigate = useNavigate();
+
   const [errors, setErrors] = useState({
     email: '',
   });
@@ -54,46 +62,49 @@ const LoginForm = () => {
   };
   return (
     <>
-      <Form
-        onSubmit={handleSubmit}
-        error
-        className='pl2 pa3 pr5-m pr7-l'
-        onChange={(e) => {
-          const inputs = [...e.currentTarget.querySelectorAll('input')].map(
-            (el) => el.value
-          );
-          setAreEmptyFields(inputs.some((val) => val === ''));
-        }}
-      >
-        <h4>Login</h4>
-        <FormField
-          required
-          width={16}
-          label='E-mail'
-          control={Input}
-          type='email'
-          name='email'
-          onChange={(e) => checkEmail(e, setErrors)}
-        ></FormField>
-        {errors.email && <Message error content={errors.email} />}
-        <FormField
-          width={16}
-          required
-          label='Password'
-          control={Input}
-          type='password'
-          name='password'
-        ></FormField>
-
-        <FormField
-          disabled={areEmptyFields || !checkErrors(errors)}
-          color={checkErrors(errors) ? 'blue' : 'red'}
-          control={Button}
-          type='submit'
+      <Container>
+        <Form
+          onSubmit={handleSubmit}
+          error
+          className='pl2 pa3 pr5-m pr7-l'
+          onChange={(e) => {
+            const inputs = [...e.currentTarget.querySelectorAll('input')].map(
+              (el) => el.value
+            );
+            setAreEmptyFields(inputs.some((val) => val === ''));
+          }}
         >
-          Login
-        </FormField>
-      </Form>
+          <h4>Login</h4>
+          <FormField
+            required
+            width={16}
+            label='E-mail'
+            control={Input}
+            type='email'
+            name='email'
+            onChange={(e) => checkEmail(e, setErrors)}
+          ></FormField>
+          {errors.email && <Message error content={errors.email} />}
+          <FormField
+            width={16}
+            required
+            label='Password'
+            control={Input}
+            type='password'
+            name='password'
+          ></FormField>
+
+          <FormField
+            disabled={areEmptyFields || !checkErrors(errors)}
+            color={checkErrors(errors) ? 'blue' : 'red'}
+            control={Button}
+            type='submit'
+          >
+            Login
+          </FormField>
+        </Form>
+        <LoginGoogle></LoginGoogle>
+      </Container>
       <ToastContainer></ToastContainer>
     </>
   );

@@ -12,4 +12,10 @@
   background-image: url('images/coffee-beans-background.jpg');
   background-position: center;
   background-size: cover;
+  height: auto;
+}
+@media (max-width: 767px) {
+  .imageStylesContainer {
+    display: none !important;
+  }
 }

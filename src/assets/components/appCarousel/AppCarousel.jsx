@@ -11,7 +11,7 @@ import { appCarouselStyles } from './appCarousel.module.css';
 import { Link } from 'react-router-dom';
 import categoriesReducer, {
   initialState,
-} from '../../dispatchers/categoriesDispatcher/categoriesReducer';
+} from '../../reducers/categoriesReducer/categoriesReducer';
 
 const AppCarousel = () => {
   const [categories, dispatchCategories] = useReducer(

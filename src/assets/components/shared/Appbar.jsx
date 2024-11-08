@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { Icon, Menu, MenuItem, Sidebar } from 'semantic-ui-react';
 import AppContext from '../../context/AppContext';
 

@@ -1,9 +1,11 @@
 import { useEffect, useReducer, useState } from 'react';
-import productsReducer from '../dispatchers/productsDispatcher/productsReducer';
-import { initialState } from '../dispatchers/categoriesDispatcher/categoriesReducer';
+
 import useFetch from '../hooks/useFetch';
 import ProductsPresentational from './shared/ProductsPresentational';
 import PaginationButtonsContainer from './paginationBtns/PaginationButtonsContainer';
+import productsReducer, {
+  initialState,
+} from '../reducers/productsReducer/productsReducer';
 
 const SearchResultList = function ({ value }) {
   const [pagination, setPagination] = useState(0);

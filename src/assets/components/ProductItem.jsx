@@ -5,6 +5,7 @@ import {
   ItemHeader,
   ItemMeta,
 } from 'semantic-ui-react';
+import FavoriteButton from './FavoriteButton';
 
 const ProductItem = ({ el }) => {
   return (
@@ -20,6 +21,7 @@ const ProductItem = ({ el }) => {
           }).format(el.price)}
         </ItemExtra>
       </ItemContent>
+      <FavoriteButton item={el}></FavoriteButton>
     </Item>
   );
 };

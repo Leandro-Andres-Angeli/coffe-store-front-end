@@ -2,13 +2,14 @@ import { useEffect, useState, useReducer } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 
 import useFetch from '../hooks/useFetch';
-import productsReducer, {
-  initialState,
-} from '../dispatchers/productsDispatcher/productsReducer';
+
 import PaginationButtonsContainer from '../components/paginationBtns/PaginationButtonsContainer';
 import { Container } from 'semantic-ui-react';
 
 import ProductsPresentational from '../components/shared/ProductsPresentational';
+import productsReducer, {
+  initialState,
+} from '../reducers/productsReducer/productsReducer';
 
 const Category = () => {
   const location = useLocation();

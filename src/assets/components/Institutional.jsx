@@ -7,7 +7,7 @@ export const Institutional = () => {
     <section>
       <Container fluid className='mt6 '>
         <Grid>
-          <GridRow className='justify-center flex '>
+          <GridRow className='justify-center flex ' style={{ height: '100%' }}>
             <GridColumn
               mobile={16}
               tablet={8}
@@ -48,16 +48,8 @@ export const Institutional = () => {
               </div>
             </GridColumn>
             <GridColumn
-              mobile={16}
-              tablet={8}
               computer={8}
-              style={{
-                padding: '0',
-                maxHeight: '70vh',
-                height: '100%',
-                overflow: 'hidden',
-              }}
-              className={`pa5 flex  ${institutionalStyles.imageStylesContainer}   tc  flex-column justify-around `}
+              className={`pa5 flex  dn  ${institutionalStyles.imageStylesContainer}   tc  flex-column justify-around `}
             ></GridColumn>
           </GridRow>
         </Grid>
