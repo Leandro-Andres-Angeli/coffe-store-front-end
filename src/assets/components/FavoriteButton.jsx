@@ -6,6 +6,7 @@ const FavoriteButton = ({ item }) => {
   const {
     user: [user, userDispatcher],
   } = useContext(AppContext);
+  const itemIsInFavorites = user.favorites.some((el) => el.id === item.id);
   const handleFavorites = async () => {
     try {
       const fetchToDb = await fetch(
@@ -30,7 +31,12 @@ const FavoriteButton = ({ item }) => {
   };
   return (
     <div onClick={handleFavorites}>
-      <Button circular icon='star'></Button>
+      {JSON.stringify}
+      <Button
+        circular
+        color={`${itemIsInFavorites && 'yellow'} `}
+        icon='star'
+      ></Button>
     </div>
   );
 };
