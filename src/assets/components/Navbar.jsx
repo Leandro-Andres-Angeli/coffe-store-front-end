@@ -28,13 +28,17 @@ const Navbar = ({ sidebarVisibility, setSidebarVisibility }) => {
           </Link>
         </MenuHeader>
         {JSON.stringify(user)}
-        <div
-          className={`f3 ml-auto mt2 mr3 black-60 ${shoppingCart}`}
-          data-cart={user.favorites.length}
-        >
-          <Icon name='shopping cart ' className='ml-auto '></Icon>
-          {user.favorites.length}
-        </div>
+        {user && (
+          <div
+            className={`f3 ml-auto mt2 mr3 black-60  ${
+              Boolean(user.favorites.length) && shoppingCart
+            }`}
+            data-cart={user?.favorites.length}
+          >
+            <Icon name='shopping cart ' className='ml-auto '></Icon>
+          </div>
+        )}
+
         <span className=''>
           <Button
             circular
