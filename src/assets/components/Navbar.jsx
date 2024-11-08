@@ -1,4 +1,4 @@
-import { Button, Container, Menu, MenuHeader } from 'semantic-ui-react';
+import { Button, Container, Icon, Menu, MenuHeader } from 'semantic-ui-react';
 import { headerNavbar } from './navbarstyles.module.css';
 
 import { Link } from 'react-router-dom';
@@ -27,14 +27,18 @@ const Navbar = ({ sidebarVisibility, setSidebarVisibility }) => {
           </Link>
         </MenuHeader>
         {JSON.stringify(user)}
-
-        <span className='ml-auto'>
+        <div className='f3 mt2 black-60'>
+          <Icon name='shopping cart ' className='ml-auto'></Icon>
+        </div>
+        <span className=''>
           <Button
             circular
             icon={menuIcons.get(sidebarVisibility).toString()}
             onClick={() => setSidebarVisibility((prev) => !prev)}
           ></Button>
         </span>
+
+        {/* shopping cart */}
       </Menu>
     </Container>
   );
