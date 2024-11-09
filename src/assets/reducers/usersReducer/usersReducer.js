@@ -7,8 +7,15 @@ export const userReducer = (state = initialState, action) => {
       console.log('out');
 
       return initialState;
-    case 'addToFavorites':
+    case 'pushFavorites':
       return { ...state, favorites: [...state.favorites, action.payload] };
+    case 'pullFavorites':
+      console.log('in');
+
+      return {
+        ...state,
+        favorites: state.favorites.filter((el) => el.id !== action.payload.id),
+      };
 
     default:
       return state;

@@ -12,14 +12,18 @@ const FavoriteButton = ({ item }) => {
     console.log('render');
 
     setClickAction(
-      user.favorites.some((el) => el.id === item.id) ? 'remove' : 'add'
+      user.favorites.some((el) => el.id === item.id) ? 'pull' : 'push'
     );
-  }, [item.id, user.favorites]);
+  }, [item.id, user?.favorites]);
+  useEffect(() => {
+    console.log('render');
+    localStorage.setItem('user', JSON.stringify(user));
+  }, [user, user.favorites]);
 
   const handleFavorites = async () => {
     try {
       const fetchToDb = await fetch(
-        `http://localhost:3001/api/favorites/add?userId=${user.id}`,
+        `http://localhost:3001/api/favorites/add?userId=${user.id}&action=${clickAction}`,
         {
           method: 'POST',
           headers: {
@@ -33,7 +37,14 @@ const FavoriteButton = ({ item }) => {
         throw Error('error updating user favorites');
       }
       const res = await fetchToDb.json();
-      userDispatcher({ type: 'addToFavorites', payload: res.product });
+      if (!res.ok) {
+        throw Error('error updating user favorites');
+      }
+
+      userDispatcher({
+        type: `${clickAction}Favorites`,
+        payload: res.product,
+      });
     } catch (error) {
       console.log(error.message);
     }
@@ -43,7 +54,7 @@ const FavoriteButton = ({ item }) => {
       {clickAction}
       <Button
         circular
-        color={`${clickAction === 'remove' && 'yellow'} `}
+        color={`${clickAction === 'pull' && 'yellow'} `}
         icon='star'
       ></Button>
     </div>

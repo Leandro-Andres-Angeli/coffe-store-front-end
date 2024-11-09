@@ -1,10 +1,20 @@
-import { Button, Container, Icon, Menu, MenuHeader } from 'semantic-ui-react';
+import {
+  Button,
+  Container,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  Icon,
+  Menu,
+  MenuHeader,
+  MenuItem,
+} from 'semantic-ui-react';
 import { headerNavbar } from './navbarstyles.module.css';
 
 import { Link } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
 import AppContext from '../context/AppContext';
-import { shoppingCart } from './shoppingCart.module.css';
+import { shoppingCart, inactive } from './shoppingCart.module.css';
 const menuIcons = new Map([
   [true, 'close'],
   [false, 'bars'],
@@ -15,9 +25,7 @@ const Navbar = ({ sidebarVisibility, setSidebarVisibility }) => {
   const {
     user: [user],
   } = useContext(AppContext);
-  useEffect(() => {
-    console.log('update');
-  }, [user]);
+  useEffect(() => {}, [user]);
   return (
     <Container as='nav' fluid>
       <Menu className={` ${headerNavbar} pa3`} as='header'>
@@ -27,16 +35,31 @@ const Navbar = ({ sidebarVisibility, setSidebarVisibility }) => {
             <h1 style={{ width: 'max-content' }}>☕ Coffee Shop</h1>
           </Link>
         </MenuHeader>
-        {JSON.stringify(user)}
+
         {user && (
-          <div
+          <Dropdown
+            as='div'
             className={`f3 ml-auto mt2 mr3 black-60  ${
-              Boolean(user.favorites.length) && shoppingCart
-            }`}
+              Boolean(user?.favorites.length) && shoppingCart
+            } ${Boolean(user?.favorites.length) === false && inactive} `}
             data-cart={user?.favorites.length}
+            icon='shopping cart'
           >
-            <Icon name='shopping cart ' className='ml-auto '></Icon>
-          </div>
+            {/* <MenuItem>
+                    <Icon name='shopping cart ' className='ml-auto '></Icon>
+                  </MenuItem> */}
+            <DropdownMenu as='ul'>
+              <DropdownItem as='li'>a</DropdownItem>
+              <DropdownItem as='li'>b</DropdownItem>
+              <DropdownItem as='li'>c</DropdownItem>
+            </DropdownMenu>
+
+            {/*  <DropdownMenu>
+              <DropdownItem>Electronics</DropdownItem>
+              <DropdownItem>Automotive</DropdownItem>
+              <DropdownItem>Home</DropdownItem>
+            </DropdownMenu> */}
+          </Dropdown>
         )}
 
         <span className=''>

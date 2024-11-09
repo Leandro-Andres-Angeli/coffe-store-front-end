@@ -6,8 +6,13 @@ import {
   ItemMeta,
 } from 'semantic-ui-react';
 import FavoriteButton from './FavoriteButton';
+import { useContext } from 'react';
+import AppContext from '../context/AppContext';
 
 const ProductItem = ({ el }) => {
+  const {
+    user: [user],
+  } = useContext(AppContext);
   return (
     <Item key={el.id}>
       <ItemContent>
@@ -21,7 +26,8 @@ const ProductItem = ({ el }) => {
           }).format(el.price)}
         </ItemExtra>
       </ItemContent>
-      <FavoriteButton item={el}></FavoriteButton>
+
+      {user && <FavoriteButton item={el}></FavoriteButton>}
     </Item>
   );
 };

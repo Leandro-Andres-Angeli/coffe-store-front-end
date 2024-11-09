@@ -1,6 +1,9 @@
 .shoppingCart {
   position: relative;
 }
+.inactive {
+  pointer-events: none;
+}
 .shoppingCart::before {
   position: absolute;
   top: -20px;

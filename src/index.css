@@ -30,3 +30,6 @@ body {
 footer {
   margin-top: auto;
 }
+.dropdown.icon {
+  display: none;
+}
