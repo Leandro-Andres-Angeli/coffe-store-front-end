@@ -1,14 +1,4 @@
-import {
-  Button,
-  Container,
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  Icon,
-  Menu,
-  MenuHeader,
-  MenuItem,
-} from 'semantic-ui-react';
+import { Button, Container, Icon, Menu, MenuHeader } from 'semantic-ui-react';
 import { headerNavbar } from './navbarstyles.module.css';
 
 import { Link } from 'react-router-dom';
@@ -25,6 +15,7 @@ const Navbar = ({ sidebarVisibility, setSidebarVisibility }) => {
   const {
     user: [user],
   } = useContext(AppContext);
+
   useEffect(() => {}, [user]);
   return (
     <Container as='nav' fluid>
@@ -37,31 +28,16 @@ const Navbar = ({ sidebarVisibility, setSidebarVisibility }) => {
         </MenuHeader>
 
         {user && (
-          <Dropdown
-            as='div'
+          <Link
             className={`f3 ml-auto mt2 mr3 black-60  ${
               Boolean(user?.favorites.length) && shoppingCart
-            } ${Boolean(user?.favorites.length) === false && inactive} `}
+            } ${Boolean(user?.favorites.length) === false && inactive}  `}
             data-cart={user?.favorites.length}
             icon='shopping cart'
           >
-            {/* <MenuItem>
-                    <Icon name='shopping cart ' className='ml-auto '></Icon>
-                  </MenuItem> */}
-            <DropdownMenu as='ul'>
-              <DropdownItem as='li'>a</DropdownItem>
-              <DropdownItem as='li'>b</DropdownItem>
-              <DropdownItem as='li'>c</DropdownItem>
-            </DropdownMenu>
-
-            {/*  <DropdownMenu>
-              <DropdownItem>Electronics</DropdownItem>
-              <DropdownItem>Automotive</DropdownItem>
-              <DropdownItem>Home</DropdownItem>
-            </DropdownMenu> */}
-          </Dropdown>
+            <Icon name='shopping cart ' className='ml-auto '></Icon>
+          </Link>
         )}
-
         <span className=''>
           <Button
             circular

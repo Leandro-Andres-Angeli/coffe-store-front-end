@@ -1,6 +1,7 @@
 .shoppingCart {
   position: relative;
 }
+
 .inactive {
   pointer-events: none;
 }
