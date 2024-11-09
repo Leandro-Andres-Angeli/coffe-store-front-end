@@ -6,7 +6,7 @@ export const RequireAuth = ({ children }) => {
   const {
     user: [user],
   } = useContext(AppContext);
-  return user ? children : <Navigate to='/' />;
+  return user ? children : <Navigate to='/' replace />;
 };
 export const NotAuth = ({ children }) => {
   const {

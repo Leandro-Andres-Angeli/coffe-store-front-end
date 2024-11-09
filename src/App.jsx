@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from './assets/components/Navbar';
@@ -13,7 +13,8 @@ import SignUp from './assets/pages/SignUp';
 import Login from './assets/pages/Login';
 import AppContext from './assets/context/AppContext';
 import { useEffect } from 'react';
-import { NotAuth } from './assets/components/auth/Auth';
+import { NotAuth, RequireAuth } from './assets/components/auth/Auth';
+
 import Search from './assets/pages/Search';
 import {
   initialState,
@@ -60,11 +61,18 @@ function App() {
             path='login'
           ></Route>
           <Route element={<Search></Search>} path='search'></Route>
-          <Route element={<Profile></Profile>} path='profile'>
+          <Route
+            element={
+              <RequireAuth>
+                <Profile></Profile>
+              </RequireAuth>
+            }
+            path='profile'
+          >
             <Route path='account' element={<Account></Account>}></Route>
             <Route path='favorites' element={<Favorites></Favorites>}></Route>
           </Route>
-          <Route element={<Home></Home>} path='*'></Route>
+          <Route element={<Navigate to='/' />} path='*'></Route>
         </Routes>
 
         <Footer></Footer>

@@ -18,7 +18,7 @@ const Navbar = ({ sidebarVisibility, setSidebarVisibility }) => {
 
   useEffect(() => {}, [user]);
   return (
-    <Container as='nav' fluid>
+    <Container as='nav' className='mb4' fluid>
       <Menu className={` ${headerNavbar} pa3`} as='header'>
         <MenuHeader>
           {' '}
