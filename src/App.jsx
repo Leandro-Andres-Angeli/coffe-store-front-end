@@ -19,6 +19,7 @@ import {
   initialState,
   userReducer,
 } from './assets/reducers/usersReducer/usersReducer';
+import Profile, { Account, Favorites } from './assets/pages/Profile';
 
 function App() {
   const [user, userDispatcher] = useReducer(userReducer, initialState);
@@ -59,6 +60,11 @@ function App() {
             path='login'
           ></Route>
           <Route element={<Search></Search>} path='search'></Route>
+          <Route element={<Profile></Profile>} path='profile'>
+            <Route path='account' element={<Account></Account>}></Route>
+            <Route path='favorites' element={<Favorites></Favorites>}></Route>
+          </Route>
+          <Route element={<Home></Home>} path='*'></Route>
         </Routes>
 
         <Footer></Footer>

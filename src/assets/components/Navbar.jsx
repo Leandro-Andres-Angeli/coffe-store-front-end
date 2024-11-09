@@ -29,6 +29,7 @@ const Navbar = ({ sidebarVisibility, setSidebarVisibility }) => {
 
         {user && (
           <Link
+            to='profile/favorites'
             className={`f3 ml-auto mt2 mr3 black-60  ${
               Boolean(user?.favorites.length) && shoppingCart
             } ${Boolean(user?.favorites.length) === false && inactive}  `}
