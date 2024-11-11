@@ -45,17 +45,23 @@ const Appbar = ({ sidebarVisibility, setSidebarVisibility }) => {
       )}
 
       {user && (
-        <MenuItem
-          role='button'
-          onClick={() => {
-            localStorage.clear();
-            userDispatcher({ type: 'logout' });
-          }}
-        >
-          {' '}
-          <Icon name='log out' />
-          Log out
-        </MenuItem>
+        <>
+          <MenuItem
+            role='button'
+            onClick={() => {
+              localStorage.clear();
+              userDispatcher({ type: 'logout' });
+            }}
+          >
+            {' '}
+            <Icon name='log out' />
+            Log out
+          </MenuItem>
+          <MenuItem as={NavLink} to='profile/account'>
+            <Icon name='user'></Icon>
+            Account
+          </MenuItem>
+        </>
       )}
     </Sidebar>
   );

@@ -28,7 +28,7 @@ const FavoriteButton = ({ item }) => {
     }
     try {
       const fetchToDb = await fetch(
-        `http://localhost:3001/api/favorites/add?userId=${user.id}&action=${clickAction}`,
+        `http://localhost:3001/api/favorites?userId=${user.id}&action=${clickAction}`,
         {
           method: 'POST',
           headers: {
