@@ -1,12 +1,13 @@
 import { useContext, useEffect, useState } from 'react';
 import { Button } from 'semantic-ui-react';
 import AppContext from '../context/AppContext';
+import { customToast } from '../utils/customToast';
 
 const FavoriteButton = ({ item }) => {
   const {
     user: [user, userDispatcher],
   } = useContext(AppContext);
-
+  const token = localStorage.getItem('token');
   const [clickAction, setClickAction] = useState(null);
   useEffect(() => {
     console.log('render');
@@ -21,6 +22,10 @@ const FavoriteButton = ({ item }) => {
   }, [user, user.favorites]);
 
   const handleFavorites = async () => {
+    let response;
+    if (!token) {
+      return;
+    }
     try {
       const fetchToDb = await fetch(
         `http://localhost:3001/api/favorites/add?userId=${user.id}&action=${clickAction}`,
@@ -29,6 +34,7 @@ const FavoriteButton = ({ item }) => {
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify(item),
         }
@@ -40,24 +46,31 @@ const FavoriteButton = ({ item }) => {
       if (!res.ok) {
         throw Error('error updating user favorites');
       }
-
+      response = res;
       userDispatcher({
         type: `${clickAction}Favorites`,
         payload: res.product,
       });
     } catch (error) {
       console.log(error.message);
+      response = error;
+    } finally {
+      const { ok } = response;
+      const toastStyle = !ok ? 'error' : 'success';
+      customToast(toastStyle, response.message, undefined, 500);
     }
   };
   return (
-    <div onClick={handleFavorites}>
-      {clickAction}
-      <Button
-        circular
-        color={`${clickAction === 'pull' && 'yellow'} `}
-        icon='star'
-      ></Button>
-    </div>
+    <>
+      <div onClick={handleFavorites}>
+        {clickAction}
+        <Button
+          circular
+          color={clickAction === 'pull' ? 'yellow' : 'white'}
+          icon='star'
+        ></Button>
+      </div>
+    </>
   );
 };
 

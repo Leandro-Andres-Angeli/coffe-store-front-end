@@ -47,8 +47,6 @@ const LoginForm = () => {
         body: JSON.stringify(userData),
       });
       if (request.status !== 200) {
-        console.log('err');
-
         throw Error('auth error');
       }
       const serverRespose = await request.json();

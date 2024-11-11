@@ -1,9 +1,9 @@
-import { Bounce, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
-export const customToast = (style, text, cb = null) =>
+export const customToast = (style, text, cb = null, timer = 3000) =>
   toast[`${style}`](text, {
     position: 'bottom-center',
-    autoClose: 5000,
+    autoClose: timer,
     hideProgressBar: true,
     closeOnClick: true,
     pauseOnHover: true,

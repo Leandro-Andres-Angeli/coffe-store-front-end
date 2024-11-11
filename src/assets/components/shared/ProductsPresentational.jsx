@@ -1,5 +1,6 @@
 import { Container, Dimmer, ItemGroup, Loader } from 'semantic-ui-react';
 import ProductItem from '../ProductItem';
+import { ToastContainer } from 'react-toastify';
 
 const ProductsPresentational = ({ loading, title, products }) => {
   if (loading) {
@@ -18,6 +19,7 @@ const ProductsPresentational = ({ loading, title, products }) => {
             <ProductItem key={el.id} {...{ el }}></ProductItem>
           ))}
       </ItemGroup>
+      <ToastContainer></ToastContainer>
     </Container>
   );
 };

@@ -26,20 +26,20 @@ const Navbar = ({ sidebarVisibility, setSidebarVisibility }) => {
             <h1 style={{ width: 'max-content' }}>☕ Coffee Shop</h1>
           </Link>
         </MenuHeader>
+        <span className='ml-auto flex'>
+          {user && (
+            <Link
+              to='profile/favorites'
+              className={`f3 ml-auto mt2 mr3 black-60  ${
+                Boolean(user?.favorites.length) && shoppingCart
+              } ${Boolean(user?.favorites.length) === false && inactive}  `}
+              data-cart={user?.favorites.length}
+              icon='shopping cart'
+            >
+              <Icon name='shopping cart ' className='ml-auto '></Icon>
+            </Link>
+          )}
 
-        {user && (
-          <Link
-            to='profile/favorites'
-            className={`f3 ml-auto mt2 mr3 black-60  ${
-              Boolean(user?.favorites.length) && shoppingCart
-            } ${Boolean(user?.favorites.length) === false && inactive}  `}
-            data-cart={user?.favorites.length}
-            icon='shopping cart'
-          >
-            <Icon name='shopping cart ' className='ml-auto '></Icon>
-          </Link>
-        )}
-        <span className=''>
           <Button
             circular
             icon={menuIcons.get(sidebarVisibility).toString()}
