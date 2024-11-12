@@ -1,4 +1,3 @@
-import { useContext } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import {
   Container,
@@ -6,8 +5,6 @@ import {
   Dropdown,
   DropdownItem,
   DropdownMenu,
-  Grid,
-  GridColumn,
   Menu,
   MenuItem,
 } from 'semantic-ui-react';
@@ -16,7 +13,6 @@ const Profile = () => {
   return (
     <Container>
       <h1>Profile settings</h1>
-      <Divider></Divider>
 
       <Menu>
         <MenuItem>

@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from './assets/components/Navbar';
@@ -25,7 +25,8 @@ import Profile from './assets/pages/Profile';
 import isTokenExpired from './assets/utils/isTokenExpired';
 import Account from './assets/components/Account';
 import Favorites from './assets/components/Favorites';
-const Public = () => <p>Public</p>;
+import Public from './assets/components/Public';
+
 const Security = () => <p>Security</p>;
 function App() {
   const [user, userDispatcher] = useReducer(userReducer, initialState);
