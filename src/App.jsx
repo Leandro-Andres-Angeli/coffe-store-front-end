@@ -20,12 +20,24 @@ import {
   initialState,
   userReducer,
 } from './assets/reducers/usersReducer/usersReducer';
-import Profile, { Account, Favorites } from './assets/pages/Profile';
+import Profile from './assets/pages/Profile';
 
+import isTokenExpired from './assets/utils/isTokenExpired';
+import Account from './assets/components/Account';
+import Favorites from './assets/components/Favorites';
+const Public = () => <p>Public</p>;
+const Security = () => <p>Security</p>;
 function App() {
   const [user, userDispatcher] = useReducer(userReducer, initialState);
   const [sidebarVisibility, setSidebarVisibility] = useState(false);
+
   useEffect(() => {
+    const tokenExpiration = isTokenExpired(localStorage.getItem('token'));
+    if (tokenExpiration) {
+      localStorage.clear();
+      userDispatcher({ type: 'logout' });
+      return;
+    }
     userDispatcher({
       type: 'login',
       payload: JSON.parse(localStorage.getItem('user')) || initialState,
@@ -69,10 +81,13 @@ function App() {
             }
             path='profile'
           >
-            <Route path='account' element={<Account></Account>}></Route>
+            <Route path='account' element={<Account></Account>}>
+              <Route path='public' element={<Public />}></Route>
+              <Route path='security' element={<Security />}></Route>
+            </Route>
             <Route path='favorites' element={<Favorites></Favorites>}></Route>
           </Route>
-          <Route element={<Navigate to='/' />} path='*'></Route>
+          {/* <Route element={<Navigate to='/' />} path='*'></Route> */}
         </Routes>
 
         <Footer></Footer>

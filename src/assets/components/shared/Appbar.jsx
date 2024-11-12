@@ -57,7 +57,7 @@ const Appbar = ({ sidebarVisibility, setSidebarVisibility }) => {
             <Icon name='log out' />
             Log out
           </MenuItem>
-          <MenuItem as={NavLink} to='profile/account'>
+          <MenuItem as={NavLink} to='profile/account/public'>
             <Icon name='user'></Icon>
             Account
           </MenuItem>

@@ -28,7 +28,7 @@ const FavoriteButton = ({ item }) => {
     }
     try {
       const fetchToDb = await fetch(
-        `http://localhost:3001/api/favorites?userId=${user.id}&action=${clickAction}`,
+        `http://localhost:3001/api/favorites?action=${clickAction}`,
         {
           method: 'POST',
           headers: {
@@ -39,13 +39,15 @@ const FavoriteButton = ({ item }) => {
           body: JSON.stringify(item),
         }
       );
-      if (fetchToDb.status !== 200) {
+      /*   if (fetchToDb.status !== 200) {
         throw Error('error updating user favorites');
-      }
+      } */
       const res = await fetchToDb.json();
       if (!res.ok) {
-        throw Error('error updating user favorites');
+        console.log(res);
+        throw Error(res.message || 'error updating user favorites');
       }
+      console.log('res', res);
       response = res;
       userDispatcher({
         type: `${clickAction}Favorites`,

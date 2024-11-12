@@ -4,8 +4,6 @@ export const userReducer = (state = initialState, action) => {
     case 'login':
       return action.payload;
     case 'logout':
-      console.log('out');
-
       return initialState;
     case 'pushFavorites':
       return { ...state, favorites: [...state.favorites, action.payload] };

@@ -13,7 +13,6 @@ import { checkEmail, checkErrors } from '../../utils';
 import { customToast } from '../utils/customToast';
 
 import AppContext from '../context/AppContext';
-import LoginGoogle from './LoginGoogle';
 
 const LoginForm = () => {
   const { VITE_API_BASE_URL } = import.meta.env;
@@ -46,11 +45,11 @@ const LoginForm = () => {
         },
         body: JSON.stringify(userData),
       });
-      if (request.status !== 200) {
-        throw Error('auth error');
-      }
-      const serverRespose = await request.json();
 
+      const serverRespose = await request.json();
+      if (!serverRespose.ok) {
+        throw Error(serverRespose.message);
+      }
       localStorage.setItem('token', serverRespose.token);
       localStorage.setItem('user', JSON.stringify(serverRespose.user));
       userDispatcher({
@@ -104,7 +103,6 @@ const LoginForm = () => {
             Login
           </FormField>
         </Form>
-        <LoginGoogle></LoginGoogle>
       </Container>
       <ToastContainer></ToastContainer>
     </>
