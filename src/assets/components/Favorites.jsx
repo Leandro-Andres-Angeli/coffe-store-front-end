@@ -5,7 +5,7 @@ import ProductsPresentational from './shared/ProductsPresentational';
 
 const Favorites = () => {
   const {
-    user: [user, userDispatcher],
+    user: [user],
   } = useContext(AppContext);
   if (user.favorites.length === 0) {
     return <Container>You have no favorites in your account yet</Container>;

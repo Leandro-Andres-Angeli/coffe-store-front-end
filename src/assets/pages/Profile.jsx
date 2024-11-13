@@ -1,7 +1,6 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import {
   Container,
-  Divider,
   Dropdown,
   DropdownItem,
   DropdownMenu,
