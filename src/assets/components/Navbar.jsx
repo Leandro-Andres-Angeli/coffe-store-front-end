@@ -1,10 +1,18 @@
-import { Button, Container, Icon, Menu, MenuHeader } from 'semantic-ui-react';
+import {
+  Button,
+  Container,
+  Icon,
+  Image,
+  Menu,
+  MenuHeader,
+} from 'semantic-ui-react';
 import { headerNavbar } from './navbarstyles.module.css';
 
 import { Link } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
 import AppContext from '../context/AppContext';
 import { shoppingCart, inactive } from './shoppingCart.module.css';
+import UserAvatar from './UserAvatar';
 const menuIcons = new Map([
   [true, 'close'],
   [false, 'bars'],
@@ -26,7 +34,9 @@ const Navbar = ({ sidebarVisibility, setSidebarVisibility }) => {
             <h1 style={{ width: 'max-content' }}>☕ Coffee Shop</h1>
           </Link>
         </MenuHeader>
+
         <span className='ml-auto flex'>
+          {user && <UserAvatar {...{ user }}></UserAvatar>}
           {user && (
             <Link
               to='profile/favorites'

@@ -48,9 +48,13 @@ const Public = () => {
     e.preventDefault();
 
     try {
+      const {
+        name: { value: name },
+        lastName: { value: lastName },
+      } = e.target;
       const response = await fetch(`${VITE_API_BASE_URL}users`, {
         method: 'PATCH',
-        body: JSON.stringify({ image: imageProfile }),
+        body: JSON.stringify({ image: imageProfile, name: name, lastName }),
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
@@ -101,13 +105,21 @@ const Public = () => {
         ></Button>
       </Container>
       <FormField className='mt4'>
-        <Input defaultValue={user.name} type='text' label='name'></Input>
+        <Input
+          defaultValue={user.name}
+          name='name'
+          type='text'
+          label='name'
+          required
+        ></Input>
       </FormField>
       <FormField className='mt4'>
         <Input
           defaultValue={user.lastName}
           type='text'
           label='last name'
+          name='lastName'
+          required
         ></Input>
       </FormField>
       <div className='flex mb3 mt4 justify-end'>
