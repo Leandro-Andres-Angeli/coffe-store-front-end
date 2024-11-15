@@ -11,14 +11,16 @@ import {
 import AppContext from '../context/AppContext';
 import validateFileFormatImage from '../utils/validateFileFormatImage';
 import { customToast } from '../utils/customToast';
+import { useNavigate } from 'react-router-dom';
 
 const Public = () => {
   const { VITE_API_BASE_URL } = import.meta.env;
+  const navigate = useNavigate();
   const {
-    user: [user],
+    user: [user, userDispatcher],
   } = useContext(AppContext);
   const inputFileRef = useRef();
-  const [imageProfile, setimageProfile] = useState(null);
+  const [imageProfile, setimageProfile] = useState(user.avatar || '');
   const previewFiles = (file) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -29,7 +31,6 @@ const Public = () => {
     };
   };
   const handlePictureUpload = (e) => {
-    console.log('upload');
     const file = e.target.files[0];
     const fileName = file.name;
     const fileFormat = fileName.slice(fileName.lastIndexOf('.') + 1);
@@ -52,18 +53,23 @@ const Public = () => {
         name: { value: name },
         lastName: { value: lastName },
       } = e.target;
-      const response = await fetch(`${VITE_API_BASE_URL}users`, {
+      const response = await fetch(`${VITE_API_BASE_URL}users/public`, {
         method: 'PATCH',
         body: JSON.stringify({ image: imageProfile, name: name, lastName }),
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       });
       const json = await response.json();
       console.log(json);
+      customToast('success', json.message);
+      navigate('/');
+      localStorage.clear();
+      userDispatcher({ type: 'logout' });
     } catch (error) {
-      console.log(error);
+      customToast('error', error.message);
     }
   };
   return (
@@ -90,18 +96,27 @@ const Public = () => {
         <Button
           onClick={() => inputFileRef.current.click()}
           label='update picture'
-          type='file'
           icon='picture'
           circular
           labelPosition='left'
+          type='button'
         ></Button>
+
         <Button
-          onClick={() => setimageProfile(null)}
+          onClick={() => setimageProfile(user.avatar)}
           label='cancel update picture'
-          type='file'
           icon='user cancel'
           circular
           labelPosition='left'
+          type='button'
+        ></Button>
+        <Button
+          onClick={() => setimageProfile(null)}
+          label='no picture'
+          icon='user cancel'
+          circular
+          labelPosition='left'
+          type='button'
         ></Button>
       </Container>
       <FormField className='mt4'>
@@ -126,7 +141,11 @@ const Public = () => {
         <Button type='submit' className='ml-auto' color='blue'>
           update
         </Button>
-        <Button type='reset' color='red'>
+        <Button
+          type='reset'
+          onClick={() => setimageProfile(user.avatar)}
+          color='red'
+        >
           reset changes
         </Button>
       </div>

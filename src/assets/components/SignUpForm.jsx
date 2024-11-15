@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ToastContainer } from 'react-toastify';
+
 import { Button, Form, FormField, Input, Message } from 'semantic-ui-react';
 import { checkEmail, checkErrors } from '../../utils';
 import { customToast } from '../utils/customToast';
@@ -193,7 +193,6 @@ const SignUpForm = () => {
           Create Account
         </FormField>
       </Form>
-      <ToastContainer></ToastContainer>
     </>
   );
 };

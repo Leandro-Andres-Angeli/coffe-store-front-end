@@ -1,11 +1,4 @@
-import {
-  Button,
-  Container,
-  Icon,
-  Image,
-  Menu,
-  MenuHeader,
-} from 'semantic-ui-react';
+import { Button, Container, Icon, Menu, MenuHeader } from 'semantic-ui-react';
 import { headerNavbar } from './navbarstyles.module.css';
 
 import { Link } from 'react-router-dom';
@@ -19,7 +12,6 @@ const menuIcons = new Map([
 ]);
 
 const Navbar = ({ sidebarVisibility, setSidebarVisibility }) => {
-  // const { headerNavbar } = navbarStyles;
   const {
     user: [user],
   } = useContext(AppContext);
@@ -36,7 +28,7 @@ const Navbar = ({ sidebarVisibility, setSidebarVisibility }) => {
         </MenuHeader>
 
         <span className='ml-auto flex'>
-          {user && <UserAvatar {...{ user }}></UserAvatar>}
+          <UserAvatar {...{ user }}></UserAvatar>
           {user && (
             <Link
               to='profile/favorites'

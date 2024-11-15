@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { ToastContainer } from 'react-toastify';
+
 import {
   Button,
   Container,
@@ -104,7 +104,6 @@ const LoginForm = () => {
           </FormField>
         </Form>
       </Container>
-      <ToastContainer></ToastContainer>
     </>
   );
 };

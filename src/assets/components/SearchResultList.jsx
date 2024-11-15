@@ -23,6 +23,7 @@ const SearchResultList = function ({ value }) {
     'load'
   );
   const { loading } = products;
+
   return (
     <>
       <ProductsPresentational

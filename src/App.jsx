@@ -26,6 +26,7 @@ import isTokenExpired from './assets/utils/isTokenExpired';
 import Account from './assets/components/Account';
 import Favorites from './assets/components/Favorites';
 import Public from './assets/components/Public';
+import { ToastContainer } from 'react-toastify';
 
 const Security = () => <p>Security</p>;
 function App() {
@@ -93,6 +94,7 @@ function App() {
 
         <Footer></Footer>
       </BrowserRouter>
+      <ToastContainer></ToastContainer>
     </AppContext.Provider>
   );
 }
