@@ -27,8 +27,8 @@ import Account from './assets/components/Account';
 import Favorites from './assets/components/Favorites';
 import Public from './assets/components/Public';
 import { ToastContainer } from 'react-toastify';
+import Security from './assets/components/Security';
 
-const Security = () => <p>Security</p>;
 function App() {
   const [user, userDispatcher] = useReducer(userReducer, initialState);
   const [sidebarVisibility, setSidebarVisibility] = useState(false);

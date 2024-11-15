@@ -12,11 +12,13 @@ const Favorites = () => {
   }
   return (
     <Container>
-      <ProductsPresentational
-        loading={false}
-        products={{ data: { products: user.favorites } }}
-        title={'Favorites'}
-      ></ProductsPresentational>
+      <div className='overflow-y-scroll' style={{ maxHeight: '50vh' }}>
+        <ProductsPresentational
+          loading={false}
+          products={{ data: { products: user.favorites } }}
+          title={'Favorites'}
+        ></ProductsPresentational>
+      </div>
     </Container>
   );
 };

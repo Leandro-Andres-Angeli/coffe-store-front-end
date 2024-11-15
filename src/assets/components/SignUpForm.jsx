@@ -4,6 +4,10 @@ import { Button, Form, FormField, Input, Message } from 'semantic-ui-react';
 import { checkEmail, checkErrors } from '../../utils';
 import { customToast } from '../utils/customToast';
 import { useNavigate } from 'react-router-dom';
+import {
+  checkEqualPassword,
+  checkPasswordLength,
+} from '../utils/validationForms';
 
 const SignUpForm = () => {
   const { VITE_API_BASE_URL } = import.meta.env;
@@ -60,23 +64,6 @@ const SignUpForm = () => {
     await postUser(`${VITE_API_BASE_URL}auth/newUser`, userData);
   };
 
-  const checkPasswordLength = (e) => {
-    const { value } = e.target;
-    if (value.length <= 7) {
-      setErrors((prev) => ({
-        ...prev,
-
-        passwordLength: `${e.target.name} must be at least 8 chars long`,
-      }));
-    } else {
-      setErrors((prev) => ({
-        ...prev,
-
-        passwordLength: '',
-      }));
-    }
-  };
-
   const checkString = (e) => {
     const checkNotString = /[^a-zA-Z ']/g.test(e.target.value);
     if (checkNotString) {
@@ -93,24 +80,7 @@ const SignUpForm = () => {
       }));
     }
   };
-  const checkEqualPassword = (e) => {
-    const password2 = e.target.value;
-    const password = e.target
-      .closest('form')
-      .querySelector('[name="password"]').value;
 
-    if (password !== password2) {
-      setErrors((prev) => ({
-        ...prev,
-
-        password: 'passwords must be equal',
-      }));
-    } else {
-      setErrors((prev) => {
-        return { ...prev, password: '' };
-      });
-    }
-  };
   return (
     <>
       <Form
@@ -164,14 +134,14 @@ const SignUpForm = () => {
           control={Input}
           type='password'
           name='password'
-          onChange={checkPasswordLength}
+          onChange={(e) => checkPasswordLength(e, setErrors)}
         ></FormField>
         {errors.passwordLength && (
           <Message error content={errors.passwordLength} />
         )}
         <FormField
           onChange={(e) => {
-            checkEqualPassword(e);
+            checkEqualPassword(e, setErrors);
           }}
           width={16}
           required
