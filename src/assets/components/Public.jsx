@@ -63,7 +63,7 @@ const Public = () => {
         },
       });
       const json = await response.json();
-      console.log(json);
+
       customToast('success', json.message);
       navigate('/');
       localStorage.clear();
