@@ -29,7 +29,7 @@ const FavoriteButton = ({ item }) => {
     }
     try {
       const fetchToDb = await fetch(
-        `${VITE_API_BASE_URL}api/favorites?action=${clickAction}`,
+        `${VITE_API_BASE_URL}favorites?action=${clickAction}`,
         {
           method: 'POST',
           headers: {
