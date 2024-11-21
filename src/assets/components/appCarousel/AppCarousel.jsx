@@ -14,11 +14,12 @@ import categoriesReducer, {
 } from '../../reducers/categoriesReducer/categoriesReducer';
 
 const AppCarousel = () => {
+  const { VITE_API_BASE_URL } = import.meta.env;
   const [categories, dispatchCategories] = useReducer(
     categoriesReducer,
     initialState
   );
-  const [url, setUrl] = useState('http://localhost:3001/api/categories');
+  const [url, setUrl] = useState(`${VITE_API_BASE_URL}categories`);
   const [animateClasses] = useState('animate__animated animate__fadeIn');
 
   useFetch(url, dispatchCategories, 'load');
@@ -27,10 +28,10 @@ const AppCarousel = () => {
   const handleOnChange = (e) => {
     const value = e.target.value.trim();
     if (value.length === 0) {
-      setUrl('http://localhost:3001/api/categories/');
+      setUrl(`${VITE_API_BASE_URL}categories/`);
     }
     if (value.length >= 2) {
-      setUrl(`http://localhost:3001/api/categories/search?regex=${value}`);
+      setUrl(`${VITE_API_BASE_URL}categories/search?regex=${value}`);
     }
   };
   return (

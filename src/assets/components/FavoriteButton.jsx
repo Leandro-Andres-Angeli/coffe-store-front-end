@@ -4,6 +4,7 @@ import AppContext from '../context/AppContext';
 import { customToast } from '../utils/customToast';
 
 const FavoriteButton = ({ item }) => {
+  const { VITE_API_BASE_URL } = import.meta.env;
   const {
     user: [user, userDispatcher],
   } = useContext(AppContext);
@@ -28,7 +29,7 @@ const FavoriteButton = ({ item }) => {
     }
     try {
       const fetchToDb = await fetch(
-        `http://localhost:3001/api/favorites?action=${clickAction}`,
+        `${VITE_API_BASE_URL}api/favorites?action=${clickAction}`,
         {
           method: 'POST',
           headers: {
